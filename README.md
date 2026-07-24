@@ -46,5 +46,5 @@ For security, the Firebase API Key is not included in the repository. To fully e
 
 This project is licensed under a **Proprietary License**.
 
-Copyright (c) 2026 Kaveesha-04. All rights reserved. 
+Copyright (c) 2026 Nimsara Karunarathna. All rights reserved. 
 Unauthorized copying, modification, distribution, or use of this software is strictly prohibited.
