@@ -984,6 +984,102 @@
                 lucide.createIcons();
             },
 
+            showEditResourceModal: function(id) {
+                const resource = this.resources.find(r => r.id === id);
+                if (!resource) return;
+                
+                const modalId = 'edit-modal';
+                const modal = document.getElementById('modal-container');
+                
+                modal.innerHTML = `
+                    <div id="${modalId}" class="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-xl animate-fade-in overflow-y-auto">
+                        <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-2xl w-full max-w-lg relative transform transition-all scale-100 border border-white/20 my-auto">
+                            <button onclick="document.getElementById('${modalId}').remove()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600"><i data-lucide="x"></i></button>
+                            
+                            <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white mb-6">Edit Resource Details</h3>
+                            
+                            <form onsubmit="window.app.saveEditedResource(event, '${id}')" class="space-y-4 text-left">
+                                <div>
+                                    <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Title</label>
+                                    <input type="text" name="title" required class="form-input-clean w-full" value="${escapeHTML(resource.title || '')}">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Grade</label>
+                                        <select name="grade" required class="form-select-clean w-full">
+                                            ${GRADES.map(g => `<option value="${g}" ${resource.grade === g ? 'selected' : ''}>${g}</option>`).join('')}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Medium</label>
+                                        <select name="medium" required class="form-select-clean w-full">
+                                            ${MEDIUMS.map(m => `<option value="${m}" ${resource.medium === m ? 'selected' : ''}>${m}</option>`).join('')}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Subject</label>
+                                    <select name="subject" required class="form-select-clean w-full">
+                                        ${SUBJECTS.map(s => `<option value="${s}" ${resource.subject === s ? 'selected' : ''}>${s}</option>`).join('')}
+                                        ${!SUBJECTS.includes(resource.subject) ? `<option value="${escapeHTML(resource.subject)}" selected>${escapeHTML(resource.subject)}</option>` : ''}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Resource Link / File URL</label>
+                                    <input type="url" name="link" required class="form-input-clean w-full" value="${escapeHTML(resource.link || '')}">
+                                </div>
+                                <div>
+                                    <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Description</label>
+                                    <textarea name="description" rows="3" class="form-input-clean w-full">${escapeHTML(resource.description || '')}</textarea>
+                                </div>
+                                <div>
+                                    <label class="form-group-label !mb-1 text-slate-600 dark:text-slate-400">Contributor Name</label>
+                                    <input type="text" name="authorName" class="form-input-clean w-full" value="${escapeHTML(resource.authorName || '')}">
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition mt-6">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+            },
+
+            saveEditedResource: async function(e, id) {
+                e.preventDefault();
+                if (!this.checkDbReady() || !this.isAdmin) return;
+                
+                const form = e.target;
+                const docRef = doc(this.db, 'artifacts', this.appId, 'public', 'data', 'resources', id);
+                
+                const payload = {
+                    title: form.title.value.trim(),
+                    grade: form.grade.value,
+                    medium: form.medium.value,
+                    subject: form.subject.value.trim(),
+                    link: form.link.value.trim(),
+                    description: form.description.value.trim(),
+                    authorName: form.authorName.value.trim() || 'Anonymous'
+                };
+                
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const origText = submitBtn.innerText;
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Saving...';
+                
+                try {
+                    await updateDoc(docRef, payload);
+                    document.getElementById('edit-modal').remove();
+                    window.app.showToast("Resource details updated successfully!", "success");
+                    this.render();
+                } catch (err) {
+                    console.error("Error updating resource:", err);
+                    window.app.showToast("Failed to update resource details.", "error");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = origText;
+                }
+            },
+
             adminAction: async function(id, action, confirmed = false) {
                 if (!this.checkDbReady() || !this.isAdmin) return;
 
@@ -1232,7 +1328,8 @@
                         ${r.status === 'pending' || r.status === 'rejected' ? `<button onclick="window.app.adminAction('${r.id}', 'approve')" class="text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 px-3 py-1 rounded-lg">${this.t('approve')}</button>` : ''}
                         ${r.status === 'approved' && r.reportCount < 5 ? `<button onclick="window.app.adminAction('${r.id}', 'reject')" class="text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 px-3 py-1 rounded-lg">Hide</button>` : ''}
                         ${r.reportCount >= 5 ? `<button onclick="window.app.adminAction('${r.id}', 'autoHide')" class="text-yellow-600 hover:bg-yellow-50 dark:hover:bg-yellow-900/30 px-3 py-1 rounded-lg">${this.t('autoHidden')}</button>` : ''}
-                        <button onclick="window.app.adminAction('${r.id}', 'delete')" class="text-slate-500 hover:text-red-500 px-3 py-1 rounded-lg ml-auto"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
+                        <button onclick="window.app.showEditResourceModal('${r.id}')" class="text-blue-500 hover:text-blue-700 px-3 py-1 rounded-lg ml-auto"><i data-lucide="edit" class="h-4 w-4"></i></button>
+                        <button onclick="window.app.adminAction('${r.id}', 'delete')" class="text-slate-500 hover:text-red-500 px-3 py-1 rounded-lg"><i data-lucide="trash-2" class="h-4 w-4"></i></button>
                     </div>
                 ` : '';
                 
