@@ -1259,6 +1259,10 @@
                         </div>
                         
                         <div class="mt-auto">
+                            <div class="flex items-center text-xs font-medium text-slate-500 dark:text-slate-400 mb-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+                                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-brand-100 to-indigo-100 dark:from-brand-900/50 dark:to-indigo-900/50 flex items-center justify-center mr-2 text-brand-600 dark:text-brand-300 font-bold text-[10px] shadow-sm uppercase">${escapeHTML((r.authorName || 'Anonymous').charAt(0))}</div>
+                                <span class="font-semibold text-slate-700 dark:text-slate-300">${escapeHTML(r.authorName || 'Anonymous')}</span>
+                            </div>
                             ${actionButton}
                             ${this.isAdmin ? adminActions : ''}
                             ${!this.isAdmin && r.status === 'approved' ? `<button onclick="window.app.reportResource('${r.id}')" class="w-full mt-3 text-xs text-red-500 hover:text-red-700 hover:underline flex items-center justify-center gap-1"><i data-lucide="flag" class="h-3 w-3"></i> ${this.t('report')}</button>` : ''}
