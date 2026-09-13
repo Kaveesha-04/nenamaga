@@ -1548,7 +1548,7 @@
                                      '';
                 
                 const actionButton = isVideo 
-                    ? `<a href="${r.link}" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="youtube" class="h-5 w-5 fill-white"></i> ${this.t('watchBtn')}</a>`
+                    ? `<a href="${r.link}" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="play-circle" class="h-5 w-5 fill-white"></i> ${this.t('watchBtn')}</a>`
                     : `<a href="${r.link}" target="_blank" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="download" class="h-5 w-5"></i> ${this.t('accessBtn')}</a>`;
 
                 const adminActions = this.isAdmin ? `
@@ -1757,7 +1757,7 @@
                                             <div class="relative group">
                                                 <i data-lucide="link" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
                                                 <input id="resource-link" name="manualLink" type="url" ${isLinkDisabled ? 'disabled' : ''} oninput="window.app.checkLink(this)" class="form-input-clean placeholder-slate-400 transition-all duration-300 ${isLinkDisabled ? 'opacity-50 cursor-not-allowed' : ''}" style="width: 100%;" placeholder="Paste Google Drive or YouTube link here..." value="${this.currentManualLink}">
-                                                <div id="video-badge" class="absolute right-3 top-1/2 -translate-y-1/2 ${this.uploadedFileUrl.includes('youtube.com') || this.uploadedFileUrl.includes('youtu.be') ? 'flex' : 'hidden'} bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg items-center animate-fade-in pointer-events-none"><i data-lucide="youtube" class="h-3 w-3 mr-1 fill-current"></i> Video</div>
+                                                <div id="video-badge" class="absolute right-3 top-1/2 -translate-y-1/2 ${this.uploadedFileUrl.includes('youtube.com') || this.uploadedFileUrl.includes('youtu.be') ? 'flex' : 'hidden'} bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg items-center animate-fade-in pointer-events-none"><i data-lucide="play-circle" class="h-3 w-3 mr-1 fill-current"></i> Video</div>
                                             </div>
                                         </div>
 
