@@ -2,10 +2,20 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="app-title">NenaMaga - The Premium Education Portal</title>
     <meta name="description" content="Sri Lanka's Premium Education Portal for Past Papers, Notes, and Video Lessons.">
     <meta name="theme-color" content="#4f46e5">
+    
+    <!-- Open Graph / Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nenamaga-edu.web.app/">
+    <meta property="og:title" content="NenaMaga - Sri Lanka's Premium Education Portal">
+    <meta property="og:description" content="Free, verified past papers, notes, and video lessons for O/L and A/L students. Monitored by university undergraduates.">
+    <meta property="og:site_name" content="NenaMaga">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NenaMaga - Sri Lanka's Premium Education Portal">
+    <meta name="twitter:description" content="Free, verified past papers, notes, and video lessons for O/L and A/L students.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -268,7 +278,7 @@
                 </div>
             </div>
             <div class="border-t border-slate-100 dark:border-slate-800 pt-8 text-xs md:text-sm text-slate-400">
-                © 2025 NenaMaga. Built with <span class="text-red-500 animate-pulse">❤️</span> for Sri Lanka 🇱🇰
+                © <span id="copyright-year">2025</span> NenaMaga. Built with <span class="text-red-500 animate-pulse">❤️</span> for Sri Lanka 🇱🇰
             </div>
         </div>
     </footer>
@@ -287,6 +297,26 @@
         const MEDIUMS = ["Sinhala", "English", "Tamil"];
         const TYPES = ["Short Note", "Past Paper", "Marking Scheme", "Model Paper", "Video Lesson"];
         const SUBJECTS = ["Combined Maths", "Biology", "Physics", "Chemistry", "Mathematics (O/L)", "Science (O/L)", "History", "Sinhala", "English", "Tamil Language", "ICT", "Accounting", "Business Studies", "Econ", "Arts", "Geography", "Logic"];
+        const ADMIN_PIN_FALLBACK = "8652"; 
+
+        // Security: HTML escape helper to prevent XSS
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Security: Validate URLs to prevent javascript: injection
+        function sanitizeURL(url) {
+            if (!url) return '#';
+            const trimmed = String(url).trim();
+            if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
+            return '#';
+        }
 
         // --- Translations ---
         const TRANSLATIONS = {
@@ -473,6 +503,9 @@
 
             init: async function() {
                 this.checkHash();
+                // Dynamic copyright year
+                const yearEl = document.getElementById('copyright-year');
+                if (yearEl) yearEl.textContent = new Date().getFullYear();
                 
                 // Add window scroll listener for the scroll-to-top button
                 window.addEventListener('scroll', () => {
@@ -1297,7 +1330,7 @@
                             <div class="text-center mb-6">
                                 <div class="inline-flex p-4 bg-red-100 dark:bg-red-900/40 rounded-full mb-5 text-red-600 shadow-sm ring-1 ring-red-500/10"><i data-lucide="alert-triangle" class="h-8 w-8"></i></div>
                                 <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white">Confirm Deletion</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Are you sure you want to permanently delete this resource: <strong>${title}</strong>?</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Are you sure you want to permanently delete this resource: <strong>${escapeHTML(title)}</strong>?</p>
                             </div>
                             <div class="flex gap-3 mt-6">
                                 <button onclick="document.getElementById('${modalId}').remove()" class="w-1/2 py-3 rounded-xl bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 font-semibold text-slate-700 dark:text-slate-300 transition">Cancel</button>
@@ -1547,9 +1580,10 @@
                                      r.status === 'approved' ? `<span class="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center"><i data-lucide="check-circle" class="h-3 w-3 mr-1 fill-emerald-700/50"></i> ${this.t('verifiedBadge')}</span>` : 
                                      '';
                 
+                const safeLink = sanitizeURL(r.link);
                 const actionButton = isVideo 
-                    ? `<a href="${r.link}" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="play-circle" class="h-5 w-5 fill-white"></i> ${this.t('watchBtn')}</a>`
-                    : `<a href="${r.link}" target="_blank" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="download" class="h-5 w-5"></i> ${this.t('accessBtn')}</a>`;
+                    ? `<a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-red-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="play-circle" class="h-5 w-5 fill-white"></i> ${this.t('watchBtn')}</a>`
+                    : `<a href="${safeLink}" target="_blank" rel="noopener noreferrer" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-brand-500/20 transition-all flex justify-center items-center gap-2"><i data-lucide="download" class="h-5 w-5"></i> ${this.t('accessBtn')}</a>`;
 
                 const adminActions = this.isAdmin ? `
                     <div class="flex flex-wrap gap-2 text-xs font-medium mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
@@ -1565,7 +1599,7 @@
                         <div>
                             <div class="flex justify-between items-start mb-4">
                                 <div class="flex flex-wrap gap-2">
-                                    <span class="bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-xl text-[11px] font-bold uppercase tracking-wide border border-brand-100 dark:border-brand-800/50">${r.grade}</span>
+                                    <span class="bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 px-3 py-1 rounded-xl text-[11px] font-bold uppercase tracking-wide border border-brand-100 dark:border-brand-800/50">${escapeHTML(r.grade)}</span>
                                     ${statusBadge}
                                 </div>
                                 <button onclick="window.app.toggleSaved('${r.id}')" class="p-2 rounded-full transition-colors active:scale-90 ${isSaved ? 'text-pink-500 hover:text-pink-600 fill-pink-500' : 'text-slate-400 hover:text-pink-500 hover:fill-pink-500/30'}">
@@ -1573,13 +1607,13 @@
                                 </button>
                             </div>
 
-                            <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-2 leading-snug">${r.title}</h3>
+                            <h3 class="text-xl font-display font-bold text-slate-900 dark:text-white mb-2 leading-snug">${escapeHTML(r.title)}</h3>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-700/50">${r.subject}</span>
-                                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700">${r.medium}</span>
+                                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-700/50">${escapeHTML(r.subject)}</span>
+                                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400 px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-700">${escapeHTML(r.medium)}</span>
                             </div>
 
-                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-3">${r.description || r.type}</p>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 line-clamp-3">${escapeHTML(r.description || r.type)}</p>
                         </div>
                         
                         <div class="mt-auto">
@@ -1625,8 +1659,7 @@
                         </div>
                     </div>
                 `;
-                // IMPROVEMENT: Clear form success state after rendering
-                this.formSuccess = false;
+                // formSuccess is now cleared by navigation, not immediately after render
                 lucide.createIcons();
             },
 
@@ -1876,18 +1909,18 @@
                                     <div>
                                         <div class="flex justify-between items-start mb-4">
                                             <div class="flex gap-2">
-                                                <span class="bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 px-3 py-1.5 rounded-xl text-[11px] font-bold uppercase tracking-wide border border-orange-100 dark:border-orange-800/50">${r.grade}</span>
-                                                <span class="text-slate-500 dark:text-slate-400 px-3 py-1.5 rounded-xl text-[11px] font-bold border border-slate-200 dark:border-slate-700">${r.subject}</span>
+                                                <span class="bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 px-3 py-1.5 rounded-xl text-[11px] font-bold uppercase tracking-wide border border-orange-100 dark:border-orange-800/50">${escapeHTML(r.grade)}</span>
+                                                <span class="text-slate-500 dark:text-slate-400 px-3 py-1.5 rounded-xl text-[11px] font-bold border border-slate-200 dark:border-slate-700">${escapeHTML(r.subject)}</span>
                                             </div>
                                             <span class="text-xs font-medium text-slate-400">${new Date(r.timestamp).toLocaleDateString()}</span>
                                         </div>
-                                        <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-snug group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">${r.title}</h3>
-                                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">${r.description || 'No specific details provided.'}</p>
+                                        <h3 class="text-lg md:text-xl font-bold text-slate-800 dark:text-slate-100 mb-3 leading-snug group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">${escapeHTML(r.title)}</h3>
+                                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-6 leading-relaxed">${escapeHTML(r.description || 'No specific details provided.')}</p>
                                     </div>
                                     <div class="pt-5 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center mt-auto">
                                         <div class="flex items-center text-xs font-medium text-slate-500">
-                                            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 flex items-center justify-center mr-3 text-orange-600 dark:text-orange-300 font-bold shadow-sm">${(r.authorName || 'U').charAt(0)}</div>
-                                            ${r.authorName || 'User'}
+                                            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-orange-100 to-amber-100 dark:from-orange-900 dark:to-amber-900 flex items-center justify-center mr-3 text-orange-600 dark:text-orange-300 font-bold shadow-sm">${escapeHTML((r.authorName || 'U').charAt(0))}</div>
+                                            ${escapeHTML(r.authorName || 'User')}
                                         </div>
                                         <button onclick="window.app.startFulfillment('${r.id}')" class="text-xs font-bold text-brand-600 bg-brand-50 dark:bg-brand-900/20 px-4 py-2 rounded-xl hover:bg-brand-100 dark:hover:bg-brand-900/40 transition">${this.t('fulfillBtn')}</button>
                                     </div>
