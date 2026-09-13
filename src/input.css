@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { 
+    font-family: 'Inter', 'Noto Sans', 'Iskoola Pota', sans-serif; 
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1, h2, h3, .font-display { font-family: 'Lexend', 'Noto Sans', sans-serif; }
+}
+
+@layer components {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
+  .dark ::-webkit-scrollbar-thumb { background: #475569; border: 2px solid transparent; background-clip: content-box; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .dark .glass {
+    background: rgba(15, 23, 42, 0.7);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  /* New Form Styles */
+  .form-group-label {
+    @apply text-sm font-bold uppercase text-slate-500 dark:text-slate-400 tracking-wider ml-1 mb-2 block; 
+  }
+  
+  /* PREMIUM/MODERN INPUT STYLES (Clean & Defined) */
+  .form-input-clean, .form-select-clean {
+    /* Sizing & Text */
+    @apply w-full rounded-xl py-3 pl-14 pr-4 text-base font-medium transition duration-200 border-2; 
+    
+    /* Background & Border - CLEAN MINIMAL */
+    background-color: #ffffff !important; 
+    border-color: #e2e8f0 !important; 
+    color: #0f172a !important; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+  }
+
+  .dark .form-input-clean, .dark .form-select-clean {
+    background-color: #0f172a !important; 
+    border-color: #334155 !important; 
+    color: #ffffff !important; 
+    box-shadow: none; 
+  }
+  
+  .form-input-clean::placeholder {
+    color: #94a3b8 !important; 
+    font-weight: 400;
+  }
+  .dark .form-input-clean::placeholder {
+    color: #64748b !important;
+  }
+  
+  /* ELITE FOCUS STATE */
+  .form-input-clean:focus, .form-select-clean:focus {
+    /* Stronger, more instant visual feedback */
+    @apply ring-4 ring-brand-500/50 border-brand-500 outline-none;
+    transform: translateY(0); 
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.4), 0 0 0 rgba(0,0,0,0.1); 
+  }
+  .dark .form-input-clean:focus, .dark .form-select-clean:focus {
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.6);
+  }
+
+  
+  /* Icon Alignment and Positioning */
+  .form-group-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    padding-left: 0.75rem; 
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    color: #4f46e5; 
+    z-index: 10;
+  }
+  .dark .form-group-icon-wrapper {
+    color: #818cf8; 
+  }
+
+  /* Fix for textarea icon alignment */
+  textarea.form-input-clean + .form-group-icon-wrapper {
+    top: 0;
+    transform: translateY(0);
+    align-items: flex-start;
+    padding-top: 0.8rem; /* pt-3 */
+  }
+  /* Ensure text starts after the icon (Reduced from 3.25rem to 2.5rem for tight spacing) */
+  .form-select-clean, .form-input-clean {
+    padding-left: 2.5rem !important;
+  }
+}

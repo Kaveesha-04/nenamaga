@@ -1,292 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="app-title">NenaMaga - The Premium Education Portal</title>
-    <meta name="description" content="Sri Lanka's Premium Education Portal for Past Papers, Notes, and Video Lessons.">
-    <meta name="theme-color" content="#4f46e5">
-    
-    <!-- Open Graph / Social Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nenamaga-edu.web.app/">
-    <meta property="og:title" content="NenaMaga - Sri Lanka's Premium Education Portal">
-    <meta property="og:description" content="Free, verified past papers, notes, and video lessons for O/L and A/L students. Monitored by university undergraduates.">
-    <meta property="og:site_name" content="NenaMaga">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NenaMaga - Sri Lanka's Premium Education Portal">
-    <meta name="twitter:description" content="Free, verified past papers, notes, and video lessons for O/L and A/L students.">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        (function() {
-            if (typeof tailwind !== 'undefined') {
-                tailwind.config = {
-                    darkMode: 'class',
-                    theme: {
-                        extend: {
-                            fontFamily: {
-                                sans: ['Inter', 'Noto Sans', 'Iskoola Pota', 'sans-serif'],
-                                display: ['Lexend', 'Inter', 'sans-serif'],
-                            },
-                            colors: {
-                                brand: {
-                                    50: '#eef2ff',
-                                    100: '#e0e7ff',
-                                    500: '#6366f1',
-                                    600: '#4f46e5',
-                                    700: '#4338ca',
-                                    900: '#312e81',
-                                }
-                            },
-                            animation: {
-                                'fade-in': 'fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-                                'slide-up': 'slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-                                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                                'float': 'float 6s ease-in-out infinite',
-                                'blob': 'blob 7s infinite',
-                            },
-                            keyframes: {
-                                fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-                                slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
-                                float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
-                                blob: {
-                                    '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                                    '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                                    '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                                    '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                                }
-                            }
-                        }
-                    }
-                }
-            } else {
-                console.warn("Tailwind object not yet defined. Custom config bypassed.");
-            }
-        })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lexend:wght@400;500;600;700&family=Noto+Sans:wght@400;500;700&family=Iskoola+Pota&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <style>
-        body { 
-            font-family: 'Inter', 'Noto Sans', 'Iskoola Pota', sans-serif; 
-            -webkit-tap-highlight-color: transparent;
-        }
-        h1, h2, h3, .font-display { font-family: 'Lexend', 'Noto Sans', sans-serif; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid transparent; background-clip: content-box; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; border: 2px solid transparent; background-clip: content-box; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-        .dark .glass {
-            background: rgba(15, 23, 42, 0.7);
-        }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .dark .glass-card {
-            background: rgba(30, 41, 59, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        /* New Form Styles */
-        .form-group-label {
-            @apply text-sm font-bold uppercase text-slate-500 dark:text-slate-400 tracking-wider ml-1 mb-2 block; 
-        }
-        
-        /* PREMIUM/MODERN INPUT STYLES (Clean & Defined) */
-        .form-input-clean, .form-select-clean {
-            /* Sizing & Text */
-            @apply w-full rounded-xl py-3 pl-14 pr-4 text-base font-medium transition duration-200 border-2; 
-            
-            /* Background & Border - CLEAN MINIMAL */
-            background-color: #ffffff !important; 
-            border-color: #e2e8f0 !important; 
-            color: #0f172a !important; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
-        }
-
-        .dark .form-input-clean, .dark .form-select-clean {
-            background-color: #0f172a !important; 
-            border-color: #334155 !important; 
-            color: #ffffff !important; 
-            box-shadow: none; 
-        }
-        
-        .form-input-clean::placeholder {
-             color: #94a3b8 !important; 
-             font-weight: 400;
-        }
-        .dark .form-input-clean::placeholder {
-             color: #64748b !important;
-        }
-        
-        /* ELITE FOCUS STATE */
-        .form-input-clean:focus, .form-select-clean:focus {
-            /* Stronger, more instant visual feedback */
-            @apply ring-4 ring-brand-500/50 border-brand-500 outline-none;
-            transform: translateY(0); 
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.4), 0 0 0 rgba(0,0,0,0.1); 
-        }
-        .dark .form-input-clean:focus, .dark .form-select-clean:focus {
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.6);
-        }
-
-        
-        /* Icon Alignment and Positioning */
-        .form-group-icon-wrapper {
-             position: absolute;
-             top: 50%;
-             transform: translateY(-50%);
-             left: 0;
-             padding-left: 0.75rem; 
-             display: flex;
-             align-items: center;
-             pointer-events: none;
-             color: #4f46e5; 
-             z-index: 10;
-        }
-        .dark .form-group-icon-wrapper {
-             color: #818cf8; 
-        }
-
-        /* Fix for textarea icon alignment */
-        textarea.form-input-clean + .form-group-icon-wrapper {
-             top: 0;
-             transform: translateY(0);
-             align-items: flex-start;
-             padding-top: 0.8rem; /* pt-3 */
-        }
-        /* Ensure text starts after the icon (Reduced from 3.25rem to 2.5rem for tight spacing) */
-        .form-select-clean, .form-input-clean {
-            padding-left: 2.5rem !important;
-        }
-    </style>
-</head>
-<body class="bg-slate-50 dark:bg-[#0b1120] text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen flex flex-col overflow-x-hidden selection:bg-brand-500 selection:text-white">
-
-    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="hidden md:block absolute top-0 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl mix-blend-multiply filter opacity-30 animate-blob"></div>
-        <div class="hidden md:block absolute top-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl mix-blend-multiply filter opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="hidden md:block absolute -bottom-32 left-1/3 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl mix-blend-multiply filter opacity-30 animate-blob animation-delay-4000"></div>
-        
-        <div class="md:hidden absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl"></div>
-    </div>
-
-    <div id="toast-container" class="fixed bottom-6 right-6 z-[130] flex flex-col gap-3 pointer-events-none"></div>
-
-    <div id="modal-container" class="z-[120] relative"></div>
-
-    <button id="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-brand-600 text-white shadow-xl shadow-brand-500/30 hover:bg-brand-700 hover:-translate-y-1 transition-all duration-300 translate-y-20 opacity-0 flex items-center justify-center">
-        <i data-lucide="arrow-up" class="h-5 w-5"></i>
-    </button>
-
-    <nav class="glass border-b border-slate-200/50 dark:border-slate-800/50 sticky top-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex items-center cursor-pointer group select-none" data-nav-page="home">
-                    <div class="relative">
-                        <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-purple-600 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-200"></div>
-                        <div class="relative bg-gradient-to-br from-brand-600 to-purple-600 p-2.5 rounded-xl mr-3 shadow-lg">
-                            <i data-lucide="graduation-cap" class="h-6 w-6 text-white"></i>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="font-display font-bold text-2xl block leading-none tracking-tight text-slate-900 dark:text-white" id="nav-app-name">NenaMaga</span>
-                        <span class="text-[10px] md:text-xs text-brand-600 dark:text-brand-400 font-bold uppercase tracking-widest mt-1 block" id="nav-tagline">Premium Education</span>
-                    </div>
-                </div>
-
-                <div class="hidden md:flex items-center bg-slate-100/50 dark:bg-slate-800/50 p-1.5 rounded-full border border-slate-200/50 dark:border-slate-700/50 backdrop-blur-sm">
-                    <button data-nav-page="home" class="nav-btn flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300" id="btn-home">
-                        <i data-lucide="book-open" class="h-4 w-4 mr-2"></i> <span data-t="browse">Library</span>
-                    </button>
-                    <button data-nav-page="saved" class="nav-btn flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300" id="btn-saved">
-                        <i data-lucide="bookmark" class="h-4 w-4 mr-2"></i> <span data-t="saved">Saved</span>
-                    </button>
-                    <button data-nav-page="request" class="nav-btn flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300" id="btn-request">
-                        <i data-lucide="message-square-plus" class="h-4 w-4 mr-2"></i> <span data-t="request">Requests</span>
-                    </button>
-                    <button data-nav-page="contribute" class="nav-btn flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300" id="btn-contribute">
-                        <i data-lucide="upload" class="h-4 w-4 mr-2"></i> <span data-t="contribute">Contribute</span>
-                    </button>
-                    <button data-nav-page="admin" id="admin-nav-btn" class="hidden nav-btn flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300">
-                        <i data-lucide="shield" class="h-4 w-4 mr-2"></i> <span data-t="adminPanel">Admin</span>
-                    </button>
-                </div>
-
-                <div class="flex items-center space-x-3 md:space-x-4">
-                    <button onclick="window.app.toggleDarkMode()" class="p-2.5 rounded-full text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition active:scale-95 border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
-                        <i id="theme-icon" data-lucide="moon" class="h-5 w-5"></i>
-                    </button>
-                    
-                    <button onclick="window.app.toggleLang()" class="flex items-center space-x-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 px-4 py-2 rounded-full text-sm font-bold transition border border-slate-200 dark:border-slate-700 shadow-sm text-slate-700 dark:text-slate-200 active:scale-95 group">
-                        <i data-lucide="globe" class="h-4 w-4 text-brand-600 dark:text-brand-400 group-hover:rotate-12 transition-transform"></i>
-                        <span id="current-lang" class="uppercase tracking-wide">EN</span>
-                    </button>
-
-                    <button onclick="window.app.toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 active:bg-slate-200 dark:active:bg-slate-700 transition">
-                        <i id="menu-icon" data-lucide="menu" class="h-6 w-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-[#0b1120]/95 backdrop-blur-2xl border-t border-slate-200 dark:border-slate-800 shadow-2xl absolute w-full h-screen z-40 animate-fade-in origin-top">
-            <div class="p-4 space-y-3 pt-6">
-                <button data-nav-page="home" class="w-full flex items-center px-6 py-4 rounded-2xl text-lg font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/50 active:scale-[0.98] transition border border-transparent active:border-brand-500/20"><i data-lucide="book-open" class="h-6 w-6 mr-4 text-brand-600 dark:text-brand-400"></i> <span data-t="browse">Library</span></button>
-                <button data-nav-page="saved" class="w-full flex items-center px-6 py-4 rounded-2xl text-lg font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/50 active:scale-[0.98] transition border border-transparent active:border-brand-500/20"><i data-lucide="bookmark" class="h-6 w-6 mr-4 text-brand-600 dark:text-brand-400"></i> <span data-t="saved">My Library</span></button>
-                <button data-nav-page="request" class="w-full flex items-center px-6 py-4 rounded-2xl text-lg font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/50 active:scale-[0.98] transition border border-transparent active:border-brand-500/20"><i data-lucide="message-square-plus" class="h-6 w-6 mr-4 text-brand-600 dark:text-brand-400"></i> <span data-t="request">Requests</span></button>
-                <button data-nav-page="contribute" class="w-full flex items-center px-6 py-4 rounded-2xl text-lg font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/50 active:scale-[0.98] transition border border-transparent active:border-brand-500/20"><i data-lucide="upload" class="h-6 w-6 mr-4 text-brand-600 dark:text-brand-400"></i> <span data-t="contribute">Contribute</span></button>
-                <button data-nav-page="admin" id="mobile-admin-btn" class="hidden w-full flex items-center px-6 py-4 rounded-2xl text-lg font-medium text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-800/50 active:scale-[0.98] transition border border-transparent active:border-brand-500/20"><i data-lucide="shield" class="h-6 w-6 mr-4 text-brand-600 dark:text-brand-400"></i> <span data-t="adminPanel">Admin</span></button>
-            </div>
-        </div>
-    </nav>
-
-    <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto pb-20 px-4 sm:px-6 lg:px-8 z-10 relative"></main>
-
-    <footer class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 py-12 mt-auto z-10 relative">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-6">
-                <div class="flex items-center cursor-pointer select-none group" data-nav-action="secret-admin-click">
-                    <div class="bg-brand-50 dark:bg-brand-900/30 p-2.5 rounded-xl mr-3 group-hover:bg-brand-100 transition"><i data-lucide="graduation-cap" class="h-6 w-6 text-brand-600 dark:text-brand-400"></i></div>
-                    <div class="text-left">
-                        <span class="font-bold text-lg text-slate-900 dark:text-white block font-display" id="footer-app-name">NenaMaga</span>
-                        <span class="text-xs text-slate-500 dark:text-slate-400 tracking-wide">Empowering Sri Lanka</span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center gap-8 text-sm text-slate-500 dark:text-slate-400 font-semibold">
-                    <button onclick="window.app.showAppInfoModal('about')" class="hover:text-brand-600 transition" data-t="footerAbout">About Us</button>
-                    <button onclick="window.app.showAppInfoModal('contact')" class="hover:text-brand-600 transition" data-t="footerContact">Contact</button>
-                    <button onclick="window.app.showPrivacyModal()" class="hover:text-brand-600 transition" data-t="footerPrivacy">Privacy Policy</button>
-                </div>
-            </div>
-            <div class="border-t border-slate-100 dark:border-slate-800 pt-8 text-xs md:text-sm text-slate-400">
-                © <span id="copyright-year">2025</span> NenaMaga. Built with <span class="text-red-500 animate-pulse">❤️</span> for Sri Lanka 🇱🇰
-            </div>
-        </div>
-    </footer>
-
-    <script type="module">
         // --- MODULAR IMPORTS ---
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+        import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
         import { getFirestore, collection, addDoc, updateDoc, doc, onSnapshot, deleteDoc, increment, getDoc, setDoc, query, where } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
         import { getStorage, ref as storageRef, uploadBytesResumable, getDownloadURL, deleteObject } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js';
 
@@ -296,7 +11,6 @@
         const MEDIUMS = ["Sinhala", "English", "Tamil"];
         const TYPES = ["Short Note", "Past Paper", "Marking Scheme", "Model Paper", "Video Lesson"];
         const SUBJECTS = ["Combined Maths", "Biology", "Physics", "Chemistry", "Mathematics (O/L)", "Science (O/L)", "History", "Sinhala", "English", "Tamil Language", "ICT", "Accounting", "Business Studies", "Econ", "Arts", "Geography", "Logic"];
-        const ADMIN_PIN_FALLBACK = "8652"; 
 
         // Security: HTML escape helper to prevent XSS
         function escapeHTML(str) {
@@ -317,19 +31,123 @@
             return '#';
         }
 
-        // --- Translations (Rest of the translations code remains here) ---
+        // --- Translations ---
         const TRANSLATIONS = {
             en: {
-                appTitle: "NenaMaga - The Premium Education Portal",
-                appName: "NenaMaga", appTagline: "The Premium Education Portal", heroTitle: "Quality Education,\nVerified by Experts.", heroSubtitle: "The only platform in Sri Lanka actively monitored by University Undergraduates to ensure 100% accuracy and quality.", browse: "Library", saved: "My Library", contribute: "Contribute", request: "Requests", admin: "Moderator", searchPlaceholder: "Search resources...", filterTitle: "Smart Filters", allGrades: "All Grades", allSubjects: "All Subjects", allMediums: "All Mediums", noResults: "No materials found", clearFilters: "Clear Filters", beFirst: "Be the first to share knowledge!", addMaterial: "Add Material", submitTitle: "Share Knowledge", submitSubtitle: "Upload a link or a file. Our university team will verify it.", requestTitle: "Need Help?", requestSubtitle: "Request a specific past paper or note from the community.", formGrade: "Grade", formSubject: "Subject", formMedium: "Medium", formType: "Type", formTitle: "Title", formLink: "Resource Link (Drive/YouTube)", formFile: "Upload File (PDF/Image)", formDesc: "Description", formAuthor: "Your Name", submitBtn: "Submit for Verification", requestBtn: "Post Request", submitting: "Processing...", accessBtn: "Access", watchBtn: "Watch Lesson", approve: "Verify & Approve", reject: "Reject", delete: "Delete", report: "Report", pending: "Pending Verification", thankYou: "Received!", successMsg: "Your content is queued for verification.", waitMsg: "A university moderator will review it shortly.", adminLogin: "Moderator Access", enterPin: "Enter Moderator PIN", dashboard: "Admin Dashboard", pendingCount: "items pending.", copyLink: "Copied!", reported: "Reported", adminPanel: "Admin", verifiedBadge: "Verified", "newBadge": "New", requestTabTitle: "Community Requests", fulfillBtn: "Fulfill", reqSuccess: "Request posted!", noSaved: "No saved items yet.", saveHint: "Tap the heart icon to save items.", footerAbout: "About Us", footerContact: "Contact", footerPrivacy: "Privacy Policy", installApp: "Install App", shareWhatsapp: "Share", autoHidden: "Under Review", invalidUrl: "Invalid URL", loginTitle: "Admin Access", unlock: "Unlock", reqSuccessMsg: "Request posted!", sortBy: "Sort By", sortNewest: "Newest", sortOldest: "Oldest", sortName: "Name (A-Z)", uploadProgress: "Uploading... ", pinChangeTitle: "Change Admin PIN", pinCurrent: "Current PIN", pinNew: "New PIN", pinConfirm: "Confirm New PIN", pinChangeBtn: "Update PIN"
+                appTitle: "NenaMaga - Education Portal",
+                appName: "NenaMaga", appTagline: "Education Portal", heroTitle: "Quality Education,\nVerified by Experts.", heroSubtitle: "The only platform in Sri Lanka actively monitored by University Undergraduates to ensure 100% accuracy and quality.", browse: "Library", saved: "My Library", contribute: "Contribute", request: "Requests", admin: "Moderator", searchPlaceholder: "Search resources...", filterTitle: "Smart Filters", allGrades: "All Grades", allSubjects: "All Subjects", allMediums: "All Mediums", noResults: "No materials found", clearFilters: "Clear Filters", beFirst: "Be the first to share knowledge!", addMaterial: "Add Material", submitTitle: "Share Knowledge", submitSubtitle: "Upload a link or a file. Our university team will verify it.", requestTitle: "Need Help?", requestSubtitle: "Request a specific past paper or note from the community.", formGrade: "Grade", formSubject: "Subject", formMedium: "Medium", formType: "Type", formTitle: "Title", formLink: "Resource Link (Drive/YouTube)", formFile: "Upload File (PDF/Image)", formDesc: "Description", formAuthor: "Your Name", submitBtn: "Submit for Verification", requestBtn: "Post Request", submitting: "Processing...", accessBtn: "Access", watchBtn: "Watch Lesson", approve: "Verify & Approve", reject: "Reject", delete: "Delete", report: "Report", pending: "Pending Verification", thankYou: "Received!", successMsg: "Your content is queued for verification.", waitMsg: "A university moderator will review it shortly.", adminLogin: "Moderator Access", enterPin: "Enter Moderator PIN", dashboard: "Admin Dashboard", pendingCount: "items pending.", copyLink: "Copied!", reported: "Reported", adminPanel: "Admin", verifiedBadge: "Verified", "newBadge": "New", requestTabTitle: "Community Requests", fulfillBtn: "Fulfill", reqSuccess: "Request posted!", noSaved: "No saved items yet.", saveHint: "Tap the heart icon to save items.", footerAbout: "About Us", footerContact: "Contact", footerPrivacy: "Privacy Policy", installApp: "Install App", shareWhatsapp: "Share", autoHidden: "Under Review", invalidUrl: "Invalid URL", loginTitle: "Admin Access", unlock: "Unlock", reqSuccessMsg: "Request posted!", sortBy: "Sort By", sortNewest: "Newest", sortOldest: "Oldest", sortName: "Name (A-Z)", uploadProgress: "Uploading... ", adminEmail: "Admin Email", adminPassword: "Password", confirmDelete: "Are you sure you want to permanently delete this resource"
             },
             si: {
-                appTitle: "නැණමග - ප්‍රිමියම් අධ්‍යාපන ද්වාරය",
-                appName: "නැණමග", appTagline: "ප්‍රිමියම් අධ්‍යාපන ද්වාරය", heroTitle: "ගුණාත්මක අධ්‍යාපනය, \nවිශේෂඥයින් විසින් සත්‍යාපිතයි.", heroSubtitle: "ශ්‍රී ලංකාවේ විශ්වවිද්‍යාල සිසුන් විසින් සක්‍රීයව අධීක්ෂණය කරනු ලබන එකම අධ්‍යාපනික වේදිකාව.", browse: "පුස්තකාලය", saved: "මගේ එකතුව", contribute: "දායක වන්න", request: "ඉල්ලීම්", admin: "පරිපාලක", searchPlaceholder: "සොයන්න...", filterTitle: "පෙරහන්", allGrades: "සියලුම ශ්‍රේණි", allSubjects: "සියලුම විෂයයන්", allMediums: "සියලුම මාධ්‍යයන්", noResults: "දත්ත හමු නොවීය", clearFilters: "පෙරහන් ඉවත් කරන්න", beFirst: "පළමුවැන්නා වී දැනුම බෙදාගන්න!", addMaterial: "ද්‍රව්‍ය එක් කරන්න", submitTitle: "දැනුම බෙදාගන්න", submitSubtitle: "සබැඳියක් හෝ ගොනුවක් Upload කරන්න. විශ්වවිද්‍යාල කණ්ඩායම පරීක්ෂා කරනු ඇත.", requestTitle: "අවශ්‍ය දේ නැද්ද?", requestSubtitle: "ඔබට අවශ්‍ය දේ ඉල්ලා සිටින්න.", formGrade: "ශ්‍රේණිය", formSubject: "විෂය", formMedium: "මාධ්‍යය", formType: "වර්ගය", formTitle: "මාතෘකාව", formLink: "සම්පත් සබැඳිය", formFile: "ගොනුවක් Upload කරන්න (PDF/Image)", formDesc: "විස්තරය", formAuthor: "ඔබේ නම", submitBtn: "යොමු කරන්න", requestBtn: "ඉල්ලීම පලකරන්න", submitting: "යොමු කරමින්...", accessBtn: "පිවිසෙන්න", watchBtn: "නරඹන්න", approve: "අනුමත කරන්න", reject: "ප්‍රතික්ෂේප කරන්න", delete: "මකන්න", report: "වාර්තා කරන්න", pending: "පරීක්ෂා වෙමින්", thankYou: "ස්තුතියි!", successMsg: "සාර්ථකයි.", waitMsg: "අනුමැතියෙන් පසු මෙය දිස්වනු ඇත.", adminLogin: "පරිපාලක පිවිසුම", enterPin: "මුරපදය ඇතුලත් කරන්න", dashboard: "පරිපාලක පුවරුව", pendingCount: "අනුමත කිරීමට ඇත.", copyLink: "පිටපත් විය!", reported: "වාර්තා කර ඇත", adminPanel: "පරිපාලක", verifiedBadge: "තහවුරු කර ඇත", newBadge: "නව", requestTabTitle: "ප්‍රජා ඉල්ලීම්", fulfillBtn: "ඉල්ලීම ඉටු කරන්න", reqSuccess: "ඉල්ලීම සාර්ථකයි!", noSaved: "සුරැකූ දත්ත නැත.", saveHint: "හෘදය ලකුණ ඔබන්න.", footerAbout: "අප ගැන", footerContact: "සම්බන්ධ වන්න", footerPrivacy: "රහස්‍යතා", installApp: "App එක", shareWhatsapp: "බෙදාගන්න", autoHidden: "ඉවත් කර ඇත.", invalidUrl: "වැරදි සබැඳියක්", loginTitle: "පරිපාලක", unlock: "ඇතුල් වන්න", reqSuccessMsg: "සාර්ථකයි!", sortBy: "වර්ග කරන්න", sortNewest: "අලුත්ම", sortOldest: "පැරණිම", sortName: "නම (A-Z)", uploadProgress: "උඩුගත කරමින්... ", pinChangeTitle: "පරිපාලක PIN වෙනස් කරන්න", pinCurrent: "වත්මන් PIN", pinNew: "නව PIN", pinConfirm: "තහවුරු කරන්න", pinChangeBtn: "PIN යාවත්කාලීන කරන්න"
+                appTitle: "නැණමග - අධ්‍යාපන ද්වාරය",
+                appName: "නැණමග", appTagline: "අධ්‍යාපන ද්වාරය", heroTitle: "ගුණාත්මක අධ්‍යාපනය, \nවිශේෂඥයින් විසින් සත්‍යාපිතයි.", heroSubtitle: "ශ්‍රී ලංකාවේ විශ්වවිද්‍යාල සිසුන් විසින් සක්‍රීයව අධීක්ෂණය කරනු ලබන එකම අධ්‍යාපනික වේදිකාව.", browse: "පුස්තකාලය", saved: "මගේ එකතුව", contribute: "දායක වන්න", request: "ඉල්ලීම්", admin: "පරිපාලක", searchPlaceholder: "සොයන්න...", filterTitle: "පෙරහන්", allGrades: "සියලුම ශ්‍රේණි", allSubjects: "සියලුම විෂයයන්", allMediums: "සියලුම මාධ්‍යයන්", noResults: "දත්ත හමු නොවීය", clearFilters: "පෙරහන් ඉවත් කරන්න", beFirst: "පළමුවැන්නා වී දැනුම බෙදාගන්න!", addMaterial: "ද්‍රව්‍ය එක් කරන්න", submitTitle: "දැනුම බෙදාගන්න", submitSubtitle: "සබැඳියක් හෝ ගොනුවක් Upload කරන්න. විශ්වවිද්‍යාල කණ්ඩායම පරීක්ෂා කරනු ඇත.", requestTitle: "අවශ්‍ය දේ නැද්ද?", requestSubtitle: "ඔබට අවශ්‍ය දේ ඉල්ලා සිටින්න.", formGrade: "ශ්‍රේණිය", formSubject: "විෂය", formMedium: "මාධ්‍යය", formType: "වර්ගය", formTitle: "මාතෘකාව", formLink: "සම්පත් සබැඳිය", formFile: "ගොනුවක් Upload කරන්න (PDF/Image)", formDesc: "විස්තරය", formAuthor: "ඔබේ නම", submitBtn: "යොමු කරන්න", requestBtn: "ඉල්ලීම පලකරන්න", submitting: "යොමු කරමින්...", accessBtn: "පිවිසෙන්න", watchBtn: "නරඹන්න", approve: "අනුමත කරන්න", reject: "ප්‍රතික්ෂේප කරන්න", delete: "මකන්න", report: "වාර්තා කරන්න", pending: "පරීක්ෂා වෙමින්", thankYou: "ස්තුතියි!", successMsg: "සාර්ථකයි.", waitMsg: "අනුමැතියෙන් පසු මෙය දිස්වනු ඇත.", adminLogin: "පරිපාලක පිවිසුම", enterPin: "මුරපදය ඇතුලත් කරන්න", dashboard: "පරිපාලක පුවරුව", pendingCount: "අනුමත කිරීමට ඇත.", copyLink: "පිටපත් විය!", reported: "වාර්තා කර ඇත", adminPanel: "පරිපාලක", verifiedBadge: "තහවුරු කර ඇත", newBadge: "නව", requestTabTitle: "ප්‍රජා ඉල්ලීම්", fulfillBtn: "ඉල්ලීම ඉටු කරන්න", reqSuccess: "ඉල්ලීම සාර්ථකයි!", noSaved: "සුරැකූ දත්ත නැත.", saveHint: "හෘදය ලකුණ ඔබන්න.", footerAbout: "අප ගැන", footerContact: "සම්බන්ධ වන්න", footerPrivacy: "රහස්‍යතා", installApp: "App එක", shareWhatsapp: "බෙදාගන්න", autoHidden: "ඉවත් කර ඇත.", invalidUrl: "වැරදි සබැඳියක්", loginTitle: "පරිපාලක", unlock: "ඇතුල් වන්න", reqSuccessMsg: "සාර්ථකයි!", sortBy: "වර්ග කරන්න", sortNewest: "අලුත්ම", sortOldest: "පැරණිම", sortName: "නම (A-Z)", uploadProgress: "උඩුගත කරමින්... ", adminEmail: "පරිපාලක ඊමේල්", adminPassword: "මුරපදය", confirmDelete: "මෙම දත්තය ස්ථිරවම මැකීමට අවශ්‍යද"
             },
             ta: {
-                appTitle: "நெனமக - பிரீமியம் கல்வி போர்டல்",
-                appName: "நெனமக", appTagline: "பிரீமியம் கல்வி போர்டல்", heroTitle: "உயர் தரக் கல்வி, \nநிபுணர்களால் உறுதிப்படுத்தப்பட்டது.", heroSubtitle: "இலங்கை பல்கலைக்கழக மாணவர்களால் கண்காணிக்கப்படும் ஒரே தளம்.", browse: "நூலகம்", saved: "சேகரிப்பு", contribute: "பங்களிப்பு", request: "கோரிக்கைகள்", admin: "நிர்வாகி", searchPlaceholder: "தேடுங்கள்...", filterTitle: "வடிகட்டி", allGrades: "அனைத்து வகுப்புகள்", allSubjects: "அனைத்து பாடங்கள்", allMediums: "அனைத்து மொழிகள்", noResults: "முடிவுகள் இல்லை", clearFilters: "அழிக்கவும்", beFirst: "அறிவைப் பகிருங்கள்!", addMaterial: "சேர்க்கவும்", submitTitle: "அறிவைப் பகிருங்கள்", submitSubtitle: "இணைப்பு அல்லது கோப்பை சேர்க்கவும். பல்கலைக்கழகக் குழு சரிபார்க்கும்.", requestTitle: "கிடைக்கவில்லையா?", requestSubtitle: "தேவையானதைக் கோருங்கள்.", formGrade: "தரம்", formSubject: "பாடம்", formMedium: "மொழி", formType: "வகை", formTitle: "தலைப்பு", formLink: "வள இணைப்பு", formFile: "கோப்பை பதிவேற்றவும் (PDF/Image)", formDesc: "விளக்கம்", formAuthor: "பெயர்", submitBtn: "அனுப்பவும்", requestBtn: "கோரிக்கையை இடுங்கள்", submitting: "செயலாக்கப்படுகிறது...", accessBtn: "பார்க்க", watchBtn: "பார்க்க", approve: "ஏற்கவும்", reject: "நிராகரிக்கவும்", delete: "நீக்கு", report: "புகாரளி", pending: "சரிபார்ப்பில்", thankYou: "நன்றி!", successMsg: "வெற்றி.", waitMsg: "சரிபார்ப்புக்குப் பிறகு தோன்றும்.", adminLogin: "நிர்வாகி", enterPin: "கடவுச்சொல்", dashboard: "நிர்வாகப் பலகம்", pendingCount: "காத்திருக்கிறது.", copyLink: "நகலெடுக்கப்பட்டது!", reported: "புகாரளிக்கப்பட்டது", adminPanel: "நிர்வாகி", verifiedBadge: "சரிபார்க்கப்பட்டது", newBadge: "புதியது", requestTabTitle: "சமூகக் கோரிக்கைகள்", fulfillBtn: "நிறைவேற்றுங்கள்", reqSuccess: "வெற்றி!", noSaved: "இல்லை.", saveHint: "சேமிக்க கிளிக் செய்யவும்.", footerAbout: "எங்களைப் பற்றி", footerContact: "தொடர்பு", footerPrivacy: "தனியுரிமை", installApp: "செயலியை நிறுவவும்", shareWhatsapp: "பகிரவும்", autoHidden: "மறைக்கப்பட்டுள்ளது.", invalidUrl: "சரியான URL தேவை", loginTitle: "நிர்வாகி", unlock: "திறக்க", reqSuccessMsg: "வெற்றி!", sortBy: "வரிசைப்படுத்து", sortNewest: "புதியது", sortOldest: "பழையது", sortName: "பெயர் (A-Z)", uploadProgress: "பதிவேற்றப்படுகிறது... ", pinChangeTitle: "நிர்வாகி PIN-ஐ மாற்றவும்", pinCurrent: "தற்போதைய PIN", pinNew: "புதிய PIN", pinConfirm: "புதிய PIN-ஐ உறுதிப்படுத்தவும்", pinChangeBtn: "PIN-ஐப் புதுப்பிக்கவும்"
+                appTitle: "நெனமக - கல்வி போர்டல்",
+                appName: "நெனமக", appTagline: "கல்வி போர்டல்", heroTitle: "உயர் தரக் கல்வி, \nநிபுணர்களால் உறுதிப்படுத்தப்பட்டது.", heroSubtitle: "இலங்கை பல்கலைக்கழக மாணவர்களால் கண்காணிக்கப்படும் ஒரே தளம்.", browse: "நூலகம்", saved: "சேகரிப்பு", contribute: "பங்களிப்பு", request: "கோரிக்கைகள்", admin: "நிர்வாகி", searchPlaceholder: "தேடுங்கள்...", filterTitle: "வடிகட்டி", allGrades: "அனைத்து வகுப்புகள்", allSubjects: "அனைத்து பாடங்கள்", allMediums: "அனைத்து மொழிகள்", noResults: "முடிவுகள் இல்லை", clearFilters: "அழிக்கவும்", beFirst: "அறிவைப் பகிருங்கள்!", addMaterial: "சேர்க்கவும்", submitTitle: "அறிவைப் பகிருங்கள்", submitSubtitle: "இணைப்பு அல்லது கோப்பை சேர்க்கவும். பல்கலைக்கழகக் குழு சரிபார்க்கும்.", requestTitle: "கிடைக்கவில்லையா?", requestSubtitle: "தேவையானதைக் கோருங்கள்.", formGrade: "தரம்", formSubject: "பாடம்", formMedium: "மொழி", formType: "வகை", formTitle: "தலைப்பு", formLink: "வள இணைப்பு", formFile: "கோப்பை பதிவேற்றவும் (PDF/Image)", formDesc: "விளக்கம்", formAuthor: "பெயர்", submitBtn: "அனுப்பவும்", requestBtn: "கோரிக்கையை இடுங்கள்", submitting: "செயலாக்கப்படுகிறது...", accessBtn: "பார்க்க", watchBtn: "பார்க்க", approve: "ஏற்கவும்", reject: "நிராகரிக்கவும்", delete: "நீக்கு", report: "புகாரளி", pending: "சரிபார்ப்பில்", thankYou: "நன்றி!", successMsg: "வெற்றி.", waitMsg: "சரிபார்ப்புக்குப் பிறகு தோன்றும்.", adminLogin: "நிர்வாகி", enterPin: "கடவுச்சொல்", dashboard: "நிர்வாகப் பலகம்", pendingCount: "காத்திருக்கிறது.", copyLink: "நகலெடுக்கப்பட்டது!", reported: "புகாரளிக்கப்பட்டது", adminPanel: "நிர்வாகி", verifiedBadge: "சரிபார்க்கப்பட்டது", newBadge: "புதியது", requestTabTitle: "சமூகக் கோரிக்கைகள்", fulfillBtn: "நிறைவேற்றுங்கள்", reqSuccess: "வெற்றி!", noSaved: "இல்லை.", saveHint: "சேமிக்க கிளிக் செய்யவும்.", footerAbout: "எங்களைப் பற்றி", footerContact: "தொடர்பு", footerPrivacy: "தனியுரிமை", installApp: "செயலியை நிறுவவும்", shareWhatsapp: "பகிரவும்", autoHidden: "மறைக்கப்பட்டுள்ளது.", invalidUrl: "சரியான URL தேவை", loginTitle: "நிர்வாகி", unlock: "திறக்க", reqSuccessMsg: "வெற்றி!", sortBy: "வரிசைப்படுத்து", sortNewest: "புதியது", sortOldest: "பழையது", sortName: "பெயர் (A-Z)", uploadProgress: "பதிவேற்றப்படுகிறது... ", adminEmail: "நிர்வாகி மின்னஞ்சல்", adminPassword: "கடவுச்சொல்", confirmDelete: "இதை நிரந்தரமாக நீக்க விரும்புகிறீர்களா"
+            }
+        };
+
+        // --- NEW: Translation Objects for Modals ---
+        const MODAL_CONTENT = {
+            en: {
+                about: `
+                    <p class="mb-4">NenaMaga is Sri Lanka's premium educational resource portal, dedicated to providing high-quality, verified materials (past papers, notes, video lessons) for G.C.E. O/L and A/L students.</p>
+                    <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">Our promise:</p>
+                    <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
+                        <li>All content is verified for accuracy by university undergraduates.</li>
+                        <li>The platform is completely free to use.</li>
+                        <li>We rely on community contributions and careful moderation.</li>
+                    </ul>
+                    <p class="mt-6 text-xs text-slate-400">Developed in 2025 as a collaborative open-source project.</p>
+                `,
+                contact: `
+                    <p class="mb-4">If you have questions, feedback, or need support regarding a submission or content verification, please reach out.</p>
+                    <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
+                        <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
+                    </div>
+                    <p class="text-xs text-slate-400 pt-4 text-center">Note: We are staffed by volunteers, please be patient.</p>
+                `,
+                privacy: `
+                    <p class="mb-4 text-sm md:text-base">This application respects your privacy. We only collect the minimum amount of data necessary to provide and improve the service.</p>
+                    <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700 mb-4">
+                        <p class="mb-2 font-bold text-brand-600 dark:text-brand-400 text-sm uppercase tracking-wide">Key Points:</p>
+                        <ul class="list-disc list-inside text-left space-y-2 pl-2 text-sm md:text-sm">
+                            <li><strong class="text-slate-700 dark:text-slate-200">Authentication:</strong> We use anonymous tokens for security.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">Storage:</strong> Your uploads & requests are stored securely in Google Firebase.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">No Tracking:</strong> We do not track your location or sell personal data.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">Moderation:</strong> Uploads are reviewed publicly.</li>
+                        </ul>
+                    </div>
+                    <p class="mt-4 text-xs text-slate-400 text-center">By using NenaMaga, you agree to these terms.</p>
+                `,
+                buttonUnderstood: "Understood"
+            },
+            si: {
+                about: `
+                    <p class="mb-4">නැණමග යනු ශ්‍රී ලංකාවේ ප්‍රමුඛතම අධ්‍යාපනික සම්පත් ද්වාරයයි. අ.පො.ස. සා/පෙළ සහ උ/පෙළ සිසුන් සඳහා උසස් තත්ත්වයේ, සත්‍යාපිත ද්‍රව්‍ය (පසුගිය ප්‍රශ්න පත්‍ර, සටහන්, වීඩියෝ පාඩම්) සැපයීමට අපි කැපවී සිටිමු.</p>
+                    <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">අපගේ පොරොන්දුව:</p>
+                    <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
+                        <li>සියලුම අන්තර්ගතයන් විශ්වවිද්‍යාල සිසුන් විසින් පරීක්ෂා කර තහවුරු කරනු ලැබේ.</li>
+                        <li>මෙම වේදිකාව භාවිතා කිරීම සම්පූර්ණයෙන්ම නොමිලේ.</li>
+                        <li>අපි ප්‍රජා දායකත්වය සහ සුපරීක්ෂාකාරී අධීක්ෂණය මත රඳා පවතිමු.</li>
+                    </ul>
+                    <p class="mt-6 text-xs text-slate-400">2025 දී විවෘත මෘදුකාංග ව්‍යාපෘතියක් ලෙස සංවර්ධනය කරන ලදී.</p>
+                `,
+                contact: `
+                    <p class="mb-4">ඔබට ප්‍රශ්න, යෝජනා තිබේ නම් හෝ අන්තර්ගත සත්‍යාපනය සම්බන්ධයෙන් සහාය අවශ්‍ය නම්, කරුණාකර අප හා සම්බන්ධ වන්න.</p>
+                    <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
+                        <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
+                    </div>
+                    <p class="text-xs text-slate-400 pt-4 text-center">සටහන: අපි ස්වේච්ඡා සේවකයන් බැවින් ප්‍රතිචාර දැක්වීමට සුළු කාලයක් ගත විය හැක.</p>
+                `,
+                privacy: `
+                    <p class="mb-4 text-sm md:text-base">මෙම යෙදුම ඔබගේ පෞද්ගලිකත්වයට ගරු කරයි. සේවාව සැපයීමට සහ වැඩිදියුණු කිරීමට අවශ්‍ය අවම දත්ත පමණක් අපි රැස් කරමු.</p>
+                    <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700 mb-4">
+                        <p class="mb-2 font-bold text-brand-600 dark:text-brand-400 text-sm uppercase tracking-wide">ප්‍රධාන කරුණු:</p>
+                        <ul class="list-disc list-inside text-left space-y-2 pl-2 text-sm md:text-sm">
+                            <li><strong class="text-slate-700 dark:text-slate-200">සත්‍යාපනය:</strong> අපි ආරක්ෂාව සඳහා නිර්නාමික ටෝකන භාවිතා කරමු.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">ගබඩා කිරීම:</strong> ඔබේ දත්ත Google Firebase හි ආරක්ෂිතව ගබඩා කර ඇත.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">ලුහුබැඳීම් නැත:</strong> අපි ඔබේ ස්ථානය නිරීක්ෂණය නොකරන අතර පුද්ගලික දත්ත විකුණන්නේ නැත.</li>
+                        </ul>
+                    </div>
+                    <p class="mt-4 text-xs text-slate-400 text-center">නැණමග භාවිතා කිරීමෙන් ඔබ මෙම කොන්දේසි වලට එකඟ වේ.</p>
+                `,
+                buttonUnderstood: "තේරුම් ගත්තා"
+            },
+            ta: {
+                about: `
+                    <p class="mb-4">நெனமக இலங்கையின் பிரீமியம் கல்வி வள போர்டல் ஆகும். க.பொ.த சா/த மற்றும் உ/த மாணவர்களுக்கு உயர் தரமான, சரிபார்க்கப்பட்ட வளங்களை (கடந்த கால வினாத்தாள்கள், குறிப்புகள், வீடியோ பாடங்கள்) வழங்க நாங்கள் அர்ப்பணித்துள்ளோம்.</p>
+                    <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">எங்கள் உறுதிமொழி:</p>
+                    <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
+                        <li>அனைத்து உள்ளடக்கங்களும் பல்கலைக்கழக மாணவர்களால் சரிபார்க்கப்படுகின்றன.</li>
+                        <li>இந்த தளம் பயன்படுத்த முற்றிலும் இலவசம்.</li>
+                        <li>நாங்கள் சமூக பங்களிப்புகள் மற்றும் கவனமான கண்காணிப்பை நம்பியுள்ளோம்.</li>
+                    </ul>
+                    <p class="mt-6 text-xs text-slate-400">2025 இல் திறந்த மூல திட்டமாக உருவாக்கப்பட்டது.</p>
+                `,
+                contact: `
+                    <p class="mb-4">உங்களுக்கு கேள்விகள், கருத்துகள் இருந்தால் அல்லது உள்ளடக்க சரிபார்ப்பு குறித்து உதவி தேவைப்பட்டால், எங்களை தொடர்பு கொள்ளவும்.</p>
+                    <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
+                        <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
+                    </div>
+                    <p class="text-xs text-slate-400 pt-4 text-center">குறிப்பு: நாங்கள் தன்னார்வலர்கள், எனவே தயவுசெய்து பொறுமையாக இருக்கவும்.</p>
+                `,
+                privacy: `
+                    <p class="mb-4 text-sm md:text-base">இந்த பயன்பாடு உங்கள் தனியுரிமையை மதிக்கிறது. சேவையை வழங்கவும் மேம்படுத்தவும் தேவையான குறைந்தபட்ச தரவை மட்டுமே நாங்கள் சேகரிக்கிறோம்.</p>
+                    <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700 mb-4">
+                        <p class="mb-2 font-bold text-brand-600 dark:text-brand-400 text-sm uppercase tracking-wide">முக்கிய குறிப்புகள்:</p>
+                        <ul class="list-disc list-inside text-left space-y-2 pl-2 text-sm md:text-sm">
+                            <li><strong class="text-slate-700 dark:text-slate-200">பாதுகாப்பு:</strong> பாதுகாப்பிற்காக நாங்கள் அநாமதேய டோக்கன்களைப் பயன்படுத்துகிறோம்.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">சேமிப்பு:</strong> உங்கள் தரவு Google Firebase இல் பாதுகாப்பாக சேமிக்கப்படுகிறது.</li>
+                            <li><strong class="text-slate-700 dark:text-slate-200">கண்காணிப்பு இல்லை:</strong> நாங்கள் உங்கள் இருப்பிடத்தைக் கண்காணிக்கவோ தனிப்பட்ட தரவை விற்கவோ மாட்டோம்.</li>
+                        </ul>
+                    </div>
+                    <p class="mt-4 text-xs text-slate-400 text-center">நெனமகவைப் பயன்படுத்துவதன் மூலம், இந்த விதிமுறைகளை ஏற்கிறீர்கள்.</p>
+                `,
+                buttonUnderstood: "புரிந்து கொண்டேன்"
             }
         };
 
@@ -468,7 +286,9 @@
 
                 try {
                     const firebaseApp = initializeApp(config);
+                    const analytics = getAnalytics(firebaseApp);
                     const auth = getAuth(firebaseApp);
+                    this.auth = auth;
                     this.db = getFirestore(firebaseApp);
                     this.storage = getStorage(firebaseApp); 
 
@@ -484,8 +304,11 @@
                     // CRITICAL: Auth State Change listener ensures we wait for the user object
                     onAuthStateChanged(auth, async (u) => {
                         this.user = u;
-                        await this.fetchAdminPin(); // Fetch PIN from DB
+                        this.isAdmin = !!(u && u.email); // If email exists, they logged in as Admin
                         this.setupListeners();
+                        if (this.isAdmin && this.page !== 'admin') {
+                            this.setPage('admin');
+                        }
                     });
 
                     if (localStorage.getItem('nenaMagaTheme') === 'dark' || (!localStorage.getItem('nenaMagaTheme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -634,23 +457,6 @@
 
             // --- DATA / ADMIN FUNCTIONS ---
             
-            fetchAdminPin: async function() {
-                if (!this.checkDbReady()) return;
-                const docRef = doc(this.db, `artifacts/${this.appId}/config/admin_settings`);
-                try {
-                    const docSnap = await getDoc(docRef);
-                    if (docSnap.exists()) {
-                        this.adminPin = docSnap.data().value;
-                    } else {
-                        this.adminPin = ADMIN_PIN_FALLBACK;
-                        await setDoc(docRef, { value: ADMIN_PIN_FALLBACK });
-                    }
-                } catch (e) {
-                    console.warn("Failed to fetch/set admin PIN from DB. Using fallback.", e);
-                    this.adminPin = ADMIN_PIN_FALLBACK;
-                }
-            },
-            
             setupListeners: function() {
                 if (!this.checkDbReady()) return;
                 const safeAppId = this.appId;
@@ -658,6 +464,11 @@
                 onSnapshot(collection(this.db, 'artifacts', safeAppId, 'public', 'data', 'resources'), (snap) => {
                     this.resources = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                     this.isLoading = false;
+                    const loader = document.getElementById('global-loader');
+                    if (loader) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.remove(), 500);
+                    }
                     if(['home', 'saved', 'admin', 'contribute'].includes(this.page)) this.render();
                 });
 
@@ -693,10 +504,17 @@
                                 <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white">${t('loginTitle')}</h3>
                                 <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Moderator access only.</p>
                             </div>
-                            <form onsubmit="event.preventDefault(); window.app.loginAdmin(document.getElementById('admin-pin-input').value)">
+                            <form onsubmit="event.preventDefault(); window.app.loginAdmin(document.getElementById('admin-email-input').value, document.getElementById('admin-pin-input').value)">
                                 <div class="space-y-4">
                                     <div class="space-y-1.5">
-                                        <label class="form-group-label">${t('enterPin')}</label>
+                                        <label class="form-group-label">${t('adminEmail')}</label>
+                                        <div class="relative group">
+                                            <i data-lucide="mail" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
+                                            <input required id="admin-email-input" type="email" class="form-input-clean" placeholder="admin@nenamaga.com">
+                                        </div>
+                                    </div>
+                                    <div class="space-y-1.5 mt-4">
+                                        <label class="form-group-label">${t('adminPassword')}</label>
                                         <div class="relative group">
                                             <i data-lucide="key-round" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
                                             <input required id="admin-pin-input" type="password" class="form-input-clean" placeholder="****">
@@ -711,104 +529,34 @@
                 lucide.createIcons();
             },
 
-            loginAdmin: function(pin) {
+            loginAdmin: async function(email, password) {
                 if (!this.checkDbReady()) return;
-                if (pin === this.adminPin) {
+                try {
+                    await signInWithEmailAndPassword(this.auth, email, password);
                     this.isAdmin = true;
                     document.getElementById('modal-container').innerHTML = '';
                     window.app.showToast("Admin access granted.", "success");
                     this.setPage('admin');
-                } else {
-                    window.app.showToast("Incorrect PIN.", "error");
+                } catch (error) {
+                    window.app.showToast("Auth failed: " + error.message, "error");
+                    console.error("Admin login error:", error);
                 }
             },
 
-            logoutAdmin: function() {
-                this.isAdmin = false;
-                window.app.showToast("Logged out of Admin Panel.", "info");
-                this.setPage('home');
-            },
-
-            // FIX: Added missing submission handler for the PIN change form
-            changePinSubmit: function() {
-                const currentPin = document.getElementById('pin-current').value;
-                const newPin = document.getElementById('pin-new').value;
-                const confirmPin = document.getElementById('pin-confirm').value;
-                window.app.changeAdminPin(currentPin, newPin, confirmPin);
-            },
-
-            showPinChangeModal: function() {
-                const t = this.t.bind(this);
-                const modal = document.getElementById('modal-container');
-                modal.innerHTML = `
-                    <div class="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-xl animate-fade-in">
-                        <div class="bg-white dark:bg-slate-800 p-10 rounded-[2rem] shadow-2xl w-full max-w-md relative transform transition-all scale-100 border border-white/20">
-                            <button onclick="document.getElementById('modal-container').innerHTML=''" class="absolute top-5 right-5 text-slate-400 hover:text-slate-600"><i data-lucide="x"></i></button>
-                            <div class="text-center mb-8">
-                                <h3 class="text-2xl font-bold font-display text-slate-900 dark:text-white">${t('pinChangeTitle')}</h3>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Current PIN: ${this.adminPin ? 'Loaded' : 'Loading...'}</p>
-                            </div>
-                            <form id="pin-change-form" onsubmit="event.preventDefault(); window.app.changePinSubmit()">
-                                <div class="space-y-4">
-                                    <div class="space-y-1.5">
-                                        <label class="form-group-label">${t('pinCurrent')}</label>
-                                        <div class="relative group">
-                                            <i data-lucide="key" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
-                                            <input required id="pin-current" type="password" class="form-input-clean" placeholder="Enter current PIN">
-                                        </div>
-                                    </div>
-                                    <div class="space-y-1.5">
-                                        <label class="form-group-label">${t('pinNew')}</label>
-                                        <div class="relative group">
-                                            <i data-lucide="lock-open" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
-                                            <input required id="pin-new" type="password" class="form-input-clean" placeholder="Enter new PIN">
-                                        </div>
-                                    </div>
-                                    <div class="space-y-1.5">
-                                        <label class="form-group-label">${t('pinConfirm')}</label>
-                                        <div class="relative group">
-                                            <i data-lucide="check" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
-                                            <input required id="pin-confirm" type="password" class="form-input-clean" placeholder="Confirm new PIN">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-2xl shadow-xl hover:shadow-2xl shadow-brand-500/20 mt-6">${t('pinChangeBtn')}</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                `;
-                lucide.createIcons();
-            },
-
-            changeAdminPin: async function(currentPin, newPin, confirmPin) {
-                if (!this.checkDbReady()) return;
-                
-                if (newPin !== confirmPin) {
-                    window.app.showToast("New PINs do not match.", "error");
-                    return;
-                }
-                if (currentPin !== this.adminPin) {
-                    window.app.showToast("Current PIN is incorrect.", "error");
-                    return;
-                }
-                if (newPin.length < 4) {
-                    window.app.showToast("PIN must be at least 4 characters long.", "error");
-                    return;
-                }
-
+            logoutAdmin: async function() {
                 try {
-                    const docRef = doc(this.db, `artifacts/${this.appId}/config/admin_settings`);
-                    await setDoc(docRef, { value: newPin });
-                    this.adminPin = newPin;
-                    document.getElementById('modal-container').innerHTML = '';
-                    window.app.showToast("PIN updated successfully!", "success");
-                    this.setPage('admin'); 
-
-                } catch (e) {
-                    console.error("Failed to update PIN:", e);
-                    window.app.showToast("Failed to update PIN. Check permissions.", "error");
+                    await signOut(this.auth);
+                    this.isAdmin = false;
+                    window.app.showToast("Logged out of Admin Panel.", "info");
+                    this.setPage('home');
+                    // Re-authenticate anonymously to keep app working
+                    await signInAnonymously(this.auth);
+                } catch (error) {
+                    console.error("Logout error:", error);
                 }
             },
+
+
             
             // --- RESOURCE/REQUEST ACTION HANDLERS ---
             
@@ -1224,7 +972,7 @@
                             <div class="text-center mb-6">
                                 <div class="inline-flex p-4 bg-red-100 dark:bg-red-900/40 rounded-full mb-5 text-red-600 shadow-sm ring-1 ring-red-500/10"><i data-lucide="alert-triangle" class="h-8 w-8"></i></div>
                                 <h3 class="text-xl font-bold font-display text-slate-900 dark:text-white">Confirm Deletion</h3>
-                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Are you sure you want to permanently delete this resource: <strong>${escapeHTML(title)}</strong>?</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">${t('confirmDelete')}: <strong>${escapeHTML(title)}</strong>?</p>
                             </div>
                             <div class="flex gap-3 mt-6">
                                 <button onclick="document.getElementById('${modalId}').remove()" class="w-1/2 py-3 rounded-xl bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 font-semibold text-slate-700 dark:text-slate-300 transition">Cancel</button>
@@ -1842,9 +1590,6 @@
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
                             <h2 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white flex items-center"><i data-lucide="shield-check" class="h-8 w-8 mr-4 text-emerald-500"></i> ${this.t('dashboard')}</h2>
                             <div class="flex space-x-3 mt-4 md:mt-0">
-                                <button onclick="window.app.showPinChangeModal()" class="text-brand-600 dark:text-brand-400 font-medium text-sm md:text-base px-6 py-3 bg-brand-50/50 dark:bg-brand-900/20 rounded-2xl transition border border-brand-200 dark:border-brand-700 hover:bg-brand-100/50">
-                                    Change PIN
-                                </button>
                                 <button onclick="window.app.logoutAdmin()" class="text-slate-500 hover:text-red-600 font-medium text-sm md:text-base px-6 py-3 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-2xl transition border border-slate-200 dark:border-slate-700 hover:border-red-200">Logout</button>
                             </div>
                         </div>
@@ -1872,29 +1617,14 @@
                 let title = t(`footer${type.charAt(0).toUpperCase() + type.slice(1)}`);
                 let content = '';
                 let icon = '';
+                const langContent = MODAL_CONTENT[this.lang] || MODAL_CONTENT.en;
 
                 if (type === 'about') {
                     icon = 'info';
-                    content = `
-                        <p class="mb-4">NenaMaga is Sri Lanka's premium educational resource portal, dedicated to providing high-quality, verified materials (past papers, notes, video lessons) for G.C.E. O/L and A/L students.</p>
-                        <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">Our promise:</p>
-                        <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
-                            <li>All content is verified for accuracy by university undergraduates.</li>
-                            <li>The platform is completely free to use.</li>
-                            <li>We rely on community contributions and careful moderation.</li>
-                        </ul>
-                        <p class="mt-6 text-xs text-slate-400">Developed in 2025 as a collaborative open-source project.</p>
-                    `;
+                    content = langContent.about;
                 } else if (type === 'contact') {
                     icon = 'mail';
-                    content = `
-                        <p class="mb-4">If you have questions, feedback, or need support regarding a submission or content verification, please reach out.</p>
-                        <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
-                            <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
-                        </div>
-                        <p class="text-xs text-slate-400 pt-4 text-center">Note: We are staffed by volunteers, please be patient.</p>
-                    `;
+                    content = langContent.contact;
                 }
 
                 modal.innerHTML = `
@@ -1922,21 +1652,11 @@
                 const modal = document.getElementById('modal-container');
                 const modalId = 'privacy-modal';
                 const icon = 'lock';
-                const title = "Privacy Policy";
+                const title = this.lang === 'en' ? "Privacy Policy" : this.lang === 'si' ? "රහස්‍යතා ප්‍රතිපත්තිය" : "தனியுரிமைக் கொள்கை";
                 
-                const content = `
-                    <p class="mb-4 text-sm md:text-base">This application respects your privacy. We only collect the minimum amount of data necessary to provide and improve the service.</p>
-                    <div class="bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700 mb-4">
-                        <p class="mb-2 font-bold text-brand-600 dark:text-brand-400 text-sm uppercase tracking-wide">Key Points:</p>
-                        <ul class="list-disc list-inside text-left space-y-2 pl-2 text-sm md:text-sm">
-                            <li><strong class="text-slate-700 dark:text-slate-200">Authentication:</strong> We use anonymous tokens for security.</li>
-                            <li><strong class="text-slate-700 dark:text-slate-200">Storage:</strong> Your uploads & requests are stored securely in Google Firebase.</li>
-                            <li><strong class="text-slate-700 dark:text-slate-200">No Tracking:</strong> We do not track your location or sell personal data.</li>
-                            <li><strong class="text-slate-700 dark:text-slate-200">Moderation:</strong> Uploads are reviewed publicly.</li>
-                        </ul>
-                    </div>
-                    <p class="mt-4 text-xs text-slate-400 text-center">By using NenaMaga, you agree to these terms.</p>
-                `;
+                const langContent = MODAL_CONTENT[this.lang] || MODAL_CONTENT.en;
+                const content = langContent.privacy;
+                const btnText = langContent.buttonUnderstood;
 
                 modal.innerHTML = `
                     <div id="${modalId}" class="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/90 backdrop-blur-sm animate-fade-in">
@@ -1955,7 +1675,7 @@
                             </div>
 
                             <div class="p-4 border-t border-slate-100 dark:border-slate-700 text-center bg-slate-50/50 dark:bg-slate-800 rounded-b-[2rem]">
-                                <button onclick="document.getElementById('${modalId}').remove()" class="bg-brand-600 text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-brand-700 transition w-full md:w-auto">Understood</button>
+                                <button onclick="document.getElementById('${modalId}').remove()" class="bg-brand-600 text-white px-8 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-brand-700 transition w-full md:w-auto">${btnText}</button>
                             </div>
                         </div>
                     </div>
@@ -2067,6 +1787,3 @@
                 window.app.init();
             }
         });
-    </script>
-</body>
-</html>

@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Function to check if the user is the admin
+    // We will store the admin's Firebase Auth UID in a specific document.
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email != null;
+    }
+
+    match /artifacts/{appId}/public/data/resources/{document=**} {
+      // Anyone can read
+      allow read: if true;
+      
+      // Anyone can create (submit a resource) as long as they are authenticated anonymously or otherwise
+      allow create: if request.auth != null;
+      
+      // Only admins can update (approve/reject/hide) or delete
+      // However, we allow users to report (which increments the reportCount)
+      allow update: if isAdmin() || (
+        request.auth != null &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reportCount']) &&
+        request.resource.data.reportCount == resource.data.reportCount + 1
+      );
+      
+      allow delete: if isAdmin();
+    }
+    
+    match /artifacts/{appId}/public/data/requests/{document=**} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if isAdmin();
+    }
+    
+    match /admin/{document=**} {
+      allow read, write: if false; // Only accessible via Admin SDK / Console
+    }
+  }
+}
