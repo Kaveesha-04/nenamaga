@@ -74,10 +74,10 @@
     /* Stronger, more instant visual feedback */
     @apply ring-4 ring-brand-500/50 border-brand-500 outline-none;
     transform: translateY(0); 
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.4), 0 0 0 rgba(0,0,0,0.1); 
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.4), 0 0 0 rgba(0,0,0,0.1); 
   }
   .dark .form-input-clean:focus, .dark .form-select-clean:focus {
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.6);
   }
 
   
@@ -91,11 +91,11 @@
     display: flex;
     align-items: center;
     pointer-events: none;
-    color: #2563eb; 
+    color: #4f46e5; 
     z-index: 10;
   }
   .dark .form-group-icon-wrapper {
-    color: #60a5fa; 
+    color: #818cf8; 
   }
 
   /* Fix for textarea icon alignment */

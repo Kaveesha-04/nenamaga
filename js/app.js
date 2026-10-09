@@ -7,10 +7,10 @@
 
 
         // --- Configuration ---
-        const GRADES = ["Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11 (O/L)", "A/L ICT"];
+        const GRADES = ["Grade 10", "Grade 11 (O/L)", "Grade 12", "Grade 13 (A/L)"];
         const MEDIUMS = ["Sinhala", "English", "Tamil"];
         const TYPES = ["Short Note", "Past Paper", "Marking Scheme", "Model Paper", "Video Lesson"];
-        const SUBJECTS = ["ICT"];
+        const SUBJECTS = ["Combined Maths", "Biology", "Physics", "Chemistry", "Mathematics (O/L)", "Science (O/L)", "History", "Sinhala", "English", "Tamil Language", "ICT", "Accounting", "Business Studies", "Econ", "Arts", "Geography", "Logic"];
 
         // Security: HTML escape helper to prevent XSS
         function escapeHTML(str) {
@@ -34,16 +34,16 @@
         // --- Translations ---
         const TRANSLATIONS = {
             en: {
-                appTitle: "ICTLab LK - ICT Academy",
-                appName: "ICTLab LK", appTagline: "ICT Academy", heroTitle: "Master ICT.\nAce Your Exams.", heroSubtitle: "Sri Lanka's premium ICT learning hub — verified past papers, notes, and video lessons for Grade 6 to A/L. 100% free, 100% quality.", browse: "Library", saved: "My Library", contribute: "Contribute", request: "Requests", admin: "Moderator", searchPlaceholder: "Search ICT resources...", filterTitle: "Smart Filters", allGrades: "All Grades", allSubjects: "All Subjects", allMediums: "All Mediums", noResults: "No materials found", clearFilters: "Clear Filters", beFirst: "Be the first to share knowledge!", addMaterial: "Add Material", submitTitle: "Share Knowledge", submitSubtitle: "Upload a link or a file. Our team will verify it.", requestTitle: "Need Help?", requestSubtitle: "Request a specific past paper or note.", formGrade: "Grade", formSubject: "Subject", formMedium: "Medium", formType: "Type", formTitle: "Title", formLink: "Resource Link (Drive/YouTube)", formFile: "Upload File (PDF/Image)", formDesc: "Description", formAuthor: "Your Name", submitBtn: "Submit for Verification", requestBtn: "Post Request", submitting: "Processing...", accessBtn: "Access", watchBtn: "Watch Lesson", approve: "Verify & Approve", reject: "Reject", delete: "Delete", report: "Report", pending: "Pending Verification", thankYou: "Received!", successMsg: "Your content is queued for verification.", waitMsg: "Our team will review it shortly.", adminLogin: "Moderator Access", enterPin: "Enter Moderator PIN", dashboard: "Admin Dashboard", pendingCount: "items pending.", copyLink: "Copied!", reported: "Reported", adminPanel: "Admin", verifiedBadge: "Verified", "newBadge": "New", requestTabTitle: "Community Requests", fulfillBtn: "Fulfill", reqSuccess: "Request posted!", noSaved: "No saved items yet.", saveHint: "Tap the heart icon to save items.", footerAbout: "About Us", footerContact: "Contact", footerPrivacy: "Privacy Policy", installApp: "Install App", shareWhatsapp: "Share", autoHidden: "Under Review", invalidUrl: "Invalid URL", loginTitle: "Admin Access", unlock: "Unlock", reqSuccessMsg: "Request posted!", sortBy: "Sort By", sortNewest: "Newest", sortOldest: "Oldest", sortName: "Name (A-Z)", uploadProgress: "Uploading... ", adminEmail: "Admin Email", adminPassword: "Password", confirmDelete: "Are you sure you want to permanently delete this resource"
+                appTitle: "NenaMaga - Education Portal",
+                appName: "NenaMaga", appTagline: "Education Portal", heroTitle: "Quality Education,\nVerified for Accuracy.", heroSubtitle: "The premier platform in Sri Lanka, actively monitored and managed to ensure 100% accuracy and high-quality educational resources.", browse: "Library", saved: "My Library", contribute: "Contribute", request: "Requests", admin: "Moderator", searchPlaceholder: "Search resources...", filterTitle: "Smart Filters", allGrades: "All Grades", allSubjects: "All Subjects", allMediums: "All Mediums", noResults: "No materials found", clearFilters: "Clear Filters", beFirst: "Be the first to share knowledge!", addMaterial: "Add Material", submitTitle: "Share Knowledge", submitSubtitle: "Upload a link or a file. Our management team will verify it.", requestTitle: "Need Help?", requestSubtitle: "Request a specific past paper or note from the community.", formGrade: "Grade", formSubject: "Subject", formMedium: "Medium", formType: "Type", formTitle: "Title", formLink: "Resource Link (Drive/YouTube)", formFile: "Upload File (PDF/Image)", formDesc: "Description", formAuthor: "Your Name", submitBtn: "Submit for Verification", requestBtn: "Post Request", submitting: "Processing...", accessBtn: "Access", watchBtn: "Watch Lesson", approve: "Verify & Approve", reject: "Reject", delete: "Delete", report: "Report", pending: "Pending Verification", thankYou: "Received!", successMsg: "Your content is queued for verification.", waitMsg: "Our management team will review it shortly.", adminLogin: "Moderator Access", enterPin: "Enter Moderator PIN", dashboard: "Admin Dashboard", pendingCount: "items pending.", copyLink: "Copied!", reported: "Reported", adminPanel: "Admin", verifiedBadge: "Verified", "newBadge": "New", requestTabTitle: "Community Requests", fulfillBtn: "Fulfill", reqSuccess: "Request posted!", noSaved: "No saved items yet.", saveHint: "Tap the heart icon to save items.", footerAbout: "About Us", footerContact: "Contact", footerPrivacy: "Privacy Policy", installApp: "Install App", shareWhatsapp: "Share", autoHidden: "Under Review", invalidUrl: "Invalid URL", loginTitle: "Admin Access", unlock: "Unlock", reqSuccessMsg: "Request posted!", sortBy: "Sort By", sortNewest: "Newest", sortOldest: "Oldest", sortName: "Name (A-Z)", uploadProgress: "Uploading... ", adminEmail: "Admin Email", adminPassword: "Password", confirmDelete: "Are you sure you want to permanently delete this resource"
             },
             si: {
-                appTitle: "ICTLab LK - ICT අධ්‍යාපනය",
-                appName: "ICTLab LK", appTagline: "ICT අධ්‍යාපනය", heroTitle: "ICT ප්‍රගුණ කරන්න.\nවිභාග ජය ගන්න.", heroSubtitle: "ශ්‍රී ලංකාවේ ප්‍රමුඛතම ICT ඉගෙනුම් මධ්‍යස්ථානය — 6 ශ්‍රේණියේ සිට උ/පෙළ දක්වා සත්‍යාපිත පසුගිය ප්‍රශ්නපත්‍ර, සටහන් සහ වීඩියෝ පාඩම්.", browse: "පුස්තකාලය", saved: "මගේ එකතුව", contribute: "දායක වන්න", request: "ඉල්ලීම්", admin: "පරිපාලක", searchPlaceholder: "ICT සම්පත් සොයන්න...", filterTitle: "පෙරහන්", allGrades: "සියලුම ශ්‍රේණි", allSubjects: "සියලුම විෂයයන්", allMediums: "සියලුම මාධ්‍යයන්", noResults: "දත්ත හමු නොවීය", clearFilters: "පෙරහන් ඉවත් කරන්න", beFirst: "පළමුවැන්නා වී දැනුම බෙදාගන්න!", addMaterial: "ද්‍රව්‍ය එක් කරන්න", submitTitle: "දැනුම බෙදාගන්න", submitSubtitle: "සබැඳියක් හෝ ගොනුවක් Upload කරන්න. අපේ කණ්ඩායම පරීක්ෂා කරනු ඇත.", requestTitle: "අවශ්‍ය දේ නැද්ද?", requestSubtitle: "ඔබට අවශ්‍ය දේ ඉල්ලා සිටින්න.", formGrade: "ශ්‍රේණිය", formSubject: "විෂය", formMedium: "මාධ්‍යය", formType: "වර්ගය", formTitle: "මාතෘකාව", formLink: "සම්පත් සබැඳිය", formFile: "ගොනුවක් Upload කරන්න (PDF/Image)", formDesc: "විස්තරය", formAuthor: "ඔබේ නම", submitBtn: "යොමු කරන්න", requestBtn: "ඉල්ලීම පලකරන්න", submitting: "යොමු කරමින්...", accessBtn: "පිවිසෙන්න", watchBtn: "නරඹන්න", approve: "අනුමත කරන්න", reject: "ප්‍රතික්ෂේප කරන්න", delete: "මකන්න", report: "වාර්තා කරන්න", pending: "පරීක්ෂා වෙමින්", thankYou: "ස්තුතියි!", successMsg: "සාර්ථකයි.", waitMsg: "අනුමැතියෙන් පසු මෙය දිස්වනු ඇත.", adminLogin: "පරිපාලක පිවිසුම", enterPin: "මුරපදය ඇතුලත් කරන්න", dashboard: "පරිපාලක පුවරුව", pendingCount: "අනුමත කිරීමට ඇත.", copyLink: "පිටපත් විය!", reported: "වාර්තා කර ඇත", adminPanel: "පරිපාලක", verifiedBadge: "තහවුරු කර ඇත", newBadge: "නව", requestTabTitle: "ප්‍රජා ඉල්ලීම්", fulfillBtn: "ඉල්ලීම ඉටු කරන්න", reqSuccess: "ඉල්ලීම සාර්ථකයි!", noSaved: "සුරැකූ දත්ත නැත.", saveHint: "හෘදය ලකුණ ඔබන්න.", footerAbout: "අප ගැන", footerContact: "සම්බන්ධ වන්න", footerPrivacy: "රහස්‍යතා", installApp: "App එක", shareWhatsapp: "බෙදාගන්න", autoHidden: "ඉවත් කර ඇත.", invalidUrl: "වැරදි සබැඳියක්", loginTitle: "පරිපාලක", unlock: "ඇතුල් වන්න", reqSuccessMsg: "සාර්ථකයි!", sortBy: "වර්ග කරන්න", sortNewest: "අලුත්ම", sortOldest: "පැරණිම", sortName: "නම (A-Z)", uploadProgress: "උඩුගත කරමින්... ", adminEmail: "පරිපාලක ඊමේල්", adminPassword: "මුරපදය", confirmDelete: "මෙම දත්තය ස්ථිරවම මැකීමට අවශ්‍යද"
+                appTitle: "නැණමග - අධ්‍යාපන ද්වාරය",
+                appName: "නැණමග", appTagline: "අධ්‍යාපන ද්වාරය", heroTitle: "ගුණාත්මක අධ්‍යාපනය, \nවිශේෂඥයින් විසින් සත්‍යාපිතයි.", heroSubtitle: "ශ්‍රී ලංකාවේ කළමනාකරණ කණ්ඩායම විසින් සක්‍රීයව අධීක්ෂණය කරනු ලබන එකම අධ්‍යාපනික වේදිකාව.", browse: "පුස්තකාලය", saved: "මගේ එකතුව", contribute: "දායක වන්න", request: "ඉල්ලීම්", admin: "පරිපාලක", searchPlaceholder: "සොයන්න...", filterTitle: "පෙරහන්", allGrades: "සියලුම ශ්‍රේණි", allSubjects: "සියලුම විෂයයන්", allMediums: "සියලුම මාධ්‍යයන්", noResults: "දත්ත හමු නොවීය", clearFilters: "පෙරහන් ඉවත් කරන්න", beFirst: "පළමුවැන්නා වී දැනුම බෙදාගන්න!", addMaterial: "ද්‍රව්‍ය එක් කරන්න", submitTitle: "දැනුම බෙදාගන්න", submitSubtitle: "සබැඳියක් හෝ ගොනුවක් Upload කරන්න. කළමනාකරණ කණ්ඩායම පරීක්ෂා කරනු ඇත.", requestTitle: "අවශ්‍ය දේ නැද්ද?", requestSubtitle: "ඔබට අවශ්‍ය දේ ඉල්ලා සිටින්න.", formGrade: "ශ්‍රේණිය", formSubject: "විෂය", formMedium: "මාධ්‍යය", formType: "වර්ගය", formTitle: "මාතෘකාව", formLink: "සම්පත් සබැඳිය", formFile: "ගොනුවක් Upload කරන්න (PDF/Image)", formDesc: "විස්තරය", formAuthor: "ඔබේ නම", submitBtn: "යොමු කරන්න", requestBtn: "ඉල්ලීම පලකරන්න", submitting: "යොමු කරමින්...", accessBtn: "පිවිසෙන්න", watchBtn: "නරඹන්න", approve: "අනුමත කරන්න", reject: "ප්‍රතික්ෂේප කරන්න", delete: "මකන්න", report: "වාර්තා කරන්න", pending: "පරීක්ෂා වෙමින්", thankYou: "ස්තුතියි!", successMsg: "සාර්ථකයි.", waitMsg: "අනුමැතියෙන් පසු මෙය දිස්වනු ඇත.", adminLogin: "පරිපාලක පිවිසුම", enterPin: "මුරපදය ඇතුලත් කරන්න", dashboard: "පරිපාලක පුවරුව", pendingCount: "අනුමත කිරීමට ඇත.", copyLink: "පිටපත් විය!", reported: "වාර්තා කර ඇත", adminPanel: "පරිපාලක", verifiedBadge: "තහවුරු කර ඇත", newBadge: "නව", requestTabTitle: "ප්‍රජා ඉල්ලීම්", fulfillBtn: "ඉල්ලීම ඉටු කරන්න", reqSuccess: "ඉල්ලීම සාර්ථකයි!", noSaved: "සුරැකූ දත්ත නැත.", saveHint: "හෘදය ලකුණ ඔබන්න.", footerAbout: "අප ගැන", footerContact: "සම්බන්ධ වන්න", footerPrivacy: "රහස්‍යතා", installApp: "App එක", shareWhatsapp: "බෙදාගන්න", autoHidden: "ඉවත් කර ඇත.", invalidUrl: "වැරදි සබැඳියක්", loginTitle: "පරිපාලක", unlock: "ඇතුල් වන්න", reqSuccessMsg: "සාර්ථකයි!", sortBy: "වර්ග කරන්න", sortNewest: "අලුත්ම", sortOldest: "පැරණිම", sortName: "නම (A-Z)", uploadProgress: "උඩුගත කරමින්... ", adminEmail: "පරිපාලක ඊමේල්", adminPassword: "මුරපදය", confirmDelete: "මෙම දත්තය ස්ථිරවම මැකීමට අවශ්‍යද"
             },
             ta: {
-                appTitle: "ICTLab LK - ICT கல்வி",
-                appName: "ICTLab LK", appTagline: "ICT கல்வி", heroTitle: "ICT கற்றுக்கொள்ளுங்கள்.\nதேர்வில் வெற்றி பெறுங்கள்.", heroSubtitle: "இலங்கையின் முன்னணி ICT கற்றல் மையம் — 6ம் தரம் முதல் உ/த வரை சரிபார்க்கப்பட்ட வினாத்தாள்கள், குறிப்புகள், வீடியோ பாடங்கள்.", browse: "நூலகம்", saved: "சேகரிப்பு", contribute: "பங்களிப்பு", request: "கோரிக்கைகள்", admin: "நிர்வாகி", searchPlaceholder: "ICT வளங்களைத் தேடுங்கள்...", filterTitle: "வடிகட்டி", allGrades: "அனைத்து வகுப்புகள்", allSubjects: "அனைத்து பாடங்கள்", allMediums: "அனைத்து மொழிகள்", noResults: "முடிவுகள் இல்லை", clearFilters: "அழிக்கவும்", beFirst: "அறிவைப் பகிருங்கள்!", addMaterial: "சேர்க்கவும்", submitTitle: "அறிவைப் பகிருங்கள்", submitSubtitle: "இணைப்பு அல்லது கோப்பை சேர்க்கவும். எங்கள் குழு சரிபார்க்கும்.", requestTitle: "கிடைக்கவில்லையா?", requestSubtitle: "தேவையானதைக் கோருங்கள்.", formGrade: "தரம்", formSubject: "பாடம்", formMedium: "மொழி", formType: "வகை", formTitle: "தலைப்பு", formLink: "வள இணைப்பு", formFile: "கோப்பை பதிவேற்றவும் (PDF/Image)", formDesc: "விளக்கம்", formAuthor: "பெயர்", submitBtn: "அனுப்பவும்", requestBtn: "கோரிக்கையை இடுங்கள்", submitting: "செயலாக்கப்படுகிறது...", accessBtn: "பார்க்க", watchBtn: "பார்க்க", approve: "ஏற்கவும்", reject: "நிராகரிக்கவும்", delete: "நீக்கு", report: "புகாரளி", pending: "சரிபார்ப்பில்", thankYou: "நன்றி!", successMsg: "வெற்றி.", waitMsg: "சரிபார்ப்புக்குப் பிறகு தோன்றும்.", adminLogin: "நிர்வாகி", enterPin: "கடவுச்சொல்", dashboard: "நிர்வாகப் பலகம்", pendingCount: "காத்திருக்கிறது.", copyLink: "நகலெடுக்கப்பட்டது!", reported: "புகாரளிக்கப்பட்டது", adminPanel: "நிர்வாகி", verifiedBadge: "சரிபார்க்கப்பட்டது", newBadge: "புதியது", requestTabTitle: "சமூகக் கோரிக்கைகள்", fulfillBtn: "நிறைவேற்றுங்கள்", reqSuccess: "வெற்றி!", noSaved: "இல்லை.", saveHint: "சேமிக்க கிளிக் செய்யவும்.", footerAbout: "எங்களைப் பற்றி", footerContact: "தொடர்பு", footerPrivacy: "தனியுரிமை", installApp: "செயலியை நிறுவவும்", shareWhatsapp: "பகிரவும்", autoHidden: "மறைக்கப்பட்டுள்ளது.", invalidUrl: "சரியான URL தேவை", loginTitle: "நிர்வாகி", unlock: "திறக்க", reqSuccessMsg: "வெற்றி!", sortBy: "வரிசைப்படுத்து", sortNewest: "புதியது", sortOldest: "பழையது", sortName: "பெயர் (A-Z)", uploadProgress: "பதிவேற்றப்படுகிறது... ", adminEmail: "நிர்வாகி மின்னஞ்சல்", adminPassword: "கடவுச்சொல்", confirmDelete: "இதை நிரந்தரமாக நீக்க விரும்புகிறீர்களா"
+                appTitle: "நெனமக - கல்வி போர்டல்",
+                appName: "நெனமக", appTagline: "கல்வி போர்டல்", heroTitle: "உயர் தரக் கல்வி, \nநிபுணர்களால் உறுதிப்படுத்தப்பட்டது.", heroSubtitle: "இலங்கை நிர்வாகக் குழுவால் கண்காணிக்கப்படும் ஒரே தளம்.", browse: "நூலகம்", saved: "சேகரிப்பு", contribute: "பங்களிப்பு", request: "கோரிக்கைகள்", admin: "நிர்வாகி", searchPlaceholder: "தேடுங்கள்...", filterTitle: "வடிகட்டி", allGrades: "அனைத்து வகுப்புகள்", allSubjects: "அனைத்து பாடங்கள்", allMediums: "அனைத்து மொழிகள்", noResults: "முடிவுகள் இல்லை", clearFilters: "அழிக்கவும்", beFirst: "அறிவைப் பகிருங்கள்!", addMaterial: "சேர்க்கவும்", submitTitle: "அறிவைப் பகிருங்கள்", submitSubtitle: "இணைப்பு அல்லது கோப்பை சேர்க்கவும். நிர்வாகக் குழு சரிபார்க்கும்.", requestTitle: "கிடைக்கவில்லையா?", requestSubtitle: "தேவையானதைக் கோருங்கள்.", formGrade: "தரம்", formSubject: "பாடம்", formMedium: "மொழி", formType: "வகை", formTitle: "தலைப்பு", formLink: "வள இணைப்பு", formFile: "கோப்பை பதிவேற்றவும் (PDF/Image)", formDesc: "விளக்கம்", formAuthor: "பெயர்", submitBtn: "அனுப்பவும்", requestBtn: "கோரிக்கையை இடுங்கள்", submitting: "செயலாக்கப்படுகிறது...", accessBtn: "பார்க்க", watchBtn: "பார்க்க", approve: "ஏற்கவும்", reject: "நிராகரிக்கவும்", delete: "நீக்கு", report: "புகாரளி", pending: "சரிபார்ப்பில்", thankYou: "நன்றி!", successMsg: "வெற்றி.", waitMsg: "சரிபார்ப்புக்குப் பிறகு தோன்றும்.", adminLogin: "நிர்வாகி", enterPin: "கடவுச்சொல்", dashboard: "நிர்வாகப் பலகம்", pendingCount: "காத்திருக்கிறது.", copyLink: "நகலெடுக்கப்பட்டது!", reported: "புகாரளிக்கப்பட்டது", adminPanel: "நிர்வாகி", verifiedBadge: "சரிபார்க்கப்பட்டது", newBadge: "புதியது", requestTabTitle: "சமூகக் கோரிக்கைகள்", fulfillBtn: "நிறைவேற்றுங்கள்", reqSuccess: "வெற்றி!", noSaved: "இல்லை.", saveHint: "சேமிக்க கிளிக் செய்யவும்.", footerAbout: "எங்களைப் பற்றி", footerContact: "தொடர்பு", footerPrivacy: "தனியுரிமை", installApp: "செயலியை நிறுவவும்", shareWhatsapp: "பகிரவும்", autoHidden: "மறைக்கப்பட்டுள்ளது.", invalidUrl: "சரியான URL தேவை", loginTitle: "நிர்வாகி", unlock: "திறக்க", reqSuccessMsg: "வெற்றி!", sortBy: "வரிசைப்படுத்து", sortNewest: "புதியது", sortOldest: "பழையது", sortName: "பெயர் (A-Z)", uploadProgress: "பதிவேற்றப்படுகிறது... ", adminEmail: "நிர்வாகி மின்னஞ்சல்", adminPassword: "கடவுச்சொல்", confirmDelete: "இதை நிரந்தரமாக நீக்க விரும்புகிறீர்களா"
             }
         };
 
@@ -51,24 +51,22 @@
         const MODAL_CONTENT = {
             en: {
                 about: `
-                    <p class="mb-4">ICTLab LK is Sri Lanka's premium ICT education portal, dedicated to providing high-quality, verified materials (past papers, notes, video lessons) for ICT students from Grade 6 to A/L.</p>
+                    <p class="mb-4">NenaMaga is Sri Lanka's premium educational resource portal, dedicated to providing high-quality, verified materials (past papers, notes, video lessons) for G.C.E. O/L and A/L students.</p>
                     <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">Our promise:</p>
                     <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
-                        <li>All content is carefully verified for accuracy before being published.</li>
+                        <li>All content is carefully verified for accuracy by our management team before being published.</li>
                         <li>The platform is completely free to use.</li>
                         <li>We rely on community contributions and careful moderation.</li>
                     </ul>
-                    <p class="mt-6 text-xs text-slate-400">Your trusted ICT learning companion since 2025.</p>
+                    <p class="mt-6 text-xs text-slate-400">Developed in 2025 as a collaborative open-source project.</p>
                 `,
                 contact: `
-                    <p class="mb-4">If you have questions, feedback, or need support, reach out to us via WhatsApp.</p>
+                    <p class="mb-4">If you have questions, feedback, or need support regarding a submission or content verification, please reach out.</p>
                     <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
                         <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
                     </div>
-                    <a href="https://wa.me/94758574437" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition w-full justify-center">
-                        <i data-lucide="message-circle" class="h-5 w-5"></i> Chat on WhatsApp
-                    </a>
-                    <p class="text-xs text-slate-400 pt-4 text-center">We typically reply within 24 hours.</p>
+                    <p class="text-xs text-slate-400 pt-4 text-center">Note: We are staffed by volunteers, please be patient.</p>
                 `,
                 privacy: `
                     <p class="mb-4 text-sm md:text-base">This application respects your privacy. We only collect the minimum amount of data necessary to provide and improve the service.</p>
@@ -81,30 +79,28 @@
                             <li><strong class="text-slate-700 dark:text-slate-200">Moderation:</strong> Uploads are reviewed publicly.</li>
                         </ul>
                     </div>
-                    <p class="mt-4 text-xs text-slate-400 text-center">By using ICTLab LK, you agree to these terms.</p>
+                    <p class="mt-4 text-xs text-slate-400 text-center">By using NenaMaga, you agree to these terms.</p>
                 `,
                 buttonUnderstood: "Understood"
             },
             si: {
                 about: `
-                    <p class="mb-4">ICTLab LK යනු ශ්‍රී ලංකාවේ ප්‍රමුඛතම ICT අධ්‍යාපනික සම්පත් ද්වාරයයි. 6 ශ්‍රේණියේ සිට උ/පෙළ දක්වා ICT සිසුන් සඳහා උසස් තත්ත්වයේ, සත්‍යාපිත ද්‍රව්‍ය (පසුගිය ප්‍රශ්න පත්‍ර, සටහන්, වීඩියෝ පාඩම්) සැපයීමට අපි කැපවී සිටිමු.</p>
+                    <p class="mb-4">නැණමග යනු ශ්‍රී ලංකාවේ ප්‍රමුඛතම අධ්‍යාපනික සම්පත් ද්වාරයයි. අ.පො.ස. සා/පෙළ සහ උ/පෙළ සිසුන් සඳහා උසස් තත්ත්වයේ, සත්‍යාපිත ද්‍රව්‍ය (පසුගිය ප්‍රශ්න පත්‍ර, සටහන්, වීඩියෝ පාඩම්) සැපයීමට අපි කැපවී සිටිමු.</p>
                     <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">අපගේ පොරොන්දුව:</p>
                     <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
-                        <li>සියලුම අන්තර්ගතයන් පරීක්ෂා කර තහවුරු කරනු ලැබේ.</li>
+                        <li>සියලුම අන්තර්ගතයන් කළමනාකරණ කණ්ඩායම විසින් පරීක්ෂා කර තහවුරු කරනු ලැබේ.</li>
                         <li>මෙම වේදිකාව භාවිතා කිරීම සම්පූර්ණයෙන්ම නොමිලේ.</li>
                         <li>අපි ප්‍රජා දායකත්වය සහ සුපරීක්ෂාකාරී අධීක්ෂණය මත රඳා පවතිමු.</li>
                     </ul>
-                    <p class="mt-6 text-xs text-slate-400">2025 සිට ඔබේ විශ්වසනීය ICT ඉගෙනුම් සහකරු.</p>
+                    <p class="mt-6 text-xs text-slate-400">2025 දී විවෘත මෘදුකාංග ව්‍යාපෘතියක් ලෙස සංවර්ධනය කරන ලදී.</p>
                 `,
                 contact: `
-                    <p class="mb-4">ඔබට ප්‍රශ්න, යෝජනා තිබේ නම්, WhatsApp මගින් අප හා සම්බන්ධ වන්න.</p>
+                    <p class="mb-4">ඔබට ප්‍රශ්න, යෝජනා තිබේ නම් හෝ අන්තර්ගත සත්‍යාපනය සම්බන්ධයෙන් සහාය අවශ්‍ය නම්, කරුණාකර අප හා සම්බන්ධ වන්න.</p>
                     <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
                         <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
                     </div>
-                    <a href="https://wa.me/94758574437" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition w-full justify-center">
-                        <i data-lucide="message-circle" class="h-5 w-5"></i> WhatsApp මගින් සම්බන්ධ වන්න
-                    </a>
-                    <p class="text-xs text-slate-400 pt-4 text-center">අපි පැය 24 ඇතුළත පිළිතුරු දෙමු.</p>
+                    <p class="text-xs text-slate-400 pt-4 text-center">සටහන: අපි ස්වේච්ඡා සේවකයන් බැවින් ප්‍රතිචාර දැක්වීමට සුළු කාලයක් ගත විය හැක.</p>
                 `,
                 privacy: `
                     <p class="mb-4 text-sm md:text-base">මෙම යෙදුම ඔබගේ පෞද්ගලිකත්වයට ගරු කරයි. සේවාව සැපයීමට සහ වැඩිදියුණු කිරීමට අවශ්‍ය අවම දත්ත පමණක් අපි රැස් කරමු.</p>
@@ -116,30 +112,28 @@
                             <li><strong class="text-slate-700 dark:text-slate-200">ලුහුබැඳීම් නැත:</strong> අපි ඔබේ ස්ථානය නිරීක්ෂණය නොකරන අතර පුද්ගලික දත්ත විකුණන්නේ නැත.</li>
                         </ul>
                     </div>
-                    <p class="mt-4 text-xs text-slate-400 text-center">ICTLab LK භාවිතා කිරීමෙන් ඔබ මෙම කොන්දේසි වලට එකඟ වේ.</p>
+                    <p class="mt-4 text-xs text-slate-400 text-center">නැණමග භාවිතා කිරීමෙන් ඔබ මෙම කොන්දේසි වලට එකඟ වේ.</p>
                 `,
                 buttonUnderstood: "තේරුම් ගත්තා"
             },
             ta: {
                 about: `
-                    <p class="mb-4">ICTLab LK இலங்கையின் பிரீமியம் ICT கல்வி வள போர்டல் ஆகும். 6ம் தரம் முதல் உ/த வரை ICT மாணவர்களுக்கு உயர் தரமான, சரிபார்க்கப்பட்ட வளங்களை வழங்க நாங்கள் அர்ப்பணித்துள்ளோம்.</p>
+                    <p class="mb-4">நெனமக இலங்கையின் பிரீமியம் கல்வி வள போர்டல் ஆகும். க.பொ.த சா/த மற்றும் உ/த மாணவர்களுக்கு உயர் தரமான, சரிபார்க்கப்பட்ட வளங்களை (கடந்த கால வினாத்தாள்கள், குறிப்புகள், வீடியோ பாடங்கள்) வழங்க நாங்கள் அர்ப்பணித்துள்ளோம்.</p>
                     <p class="mb-4 font-semibold text-brand-600 dark:text-brand-400">எங்கள் உறுதிமொழி:</p>
                     <ul class="list-disc list-inside text-left space-y-2 pl-4 text-sm">
-                        <li>அனைத்து உள்ளடக்கங்களும் சரிபார்க்கப்படுகின்றன.</li>
+                        <li>அனைத்து உள்ளடக்கங்களும் நிர்வாகக் குழுவால் சரிபார்க்கப்படுகின்றன.</li>
                         <li>இந்த தளம் பயன்படுத்த முற்றிலும் இலவசம்.</li>
                         <li>நாங்கள் சமூக பங்களிப்புகள் மற்றும் கவனமான கண்காணிப்பை நம்பியுள்ளோம்.</li>
                     </ul>
-                    <p class="mt-6 text-xs text-slate-400">2025 முதல் உங்கள் நம்பகமான ICT கற்றல் தோழன்.</p>
+                    <p class="mt-6 text-xs text-slate-400">2025 இல் திறந்த மூல திட்டமாக உருவாக்கப்பட்டது.</p>
                 `,
                 contact: `
-                    <p class="mb-4">கேள்விகள் அல்லது கருத்துகள் இருந்தால், WhatsApp மூலம் எங்களை தொடர்பு கொள்ளவும்.</p>
+                    <p class="mb-4">உங்களுக்கு கேள்விகள், கருத்துகள் இருந்தால் அல்லது உள்ளடக்க சரிபார்ப்பு குறித்து உதவி தேவைப்பட்டால், எங்களை தொடர்பு கொள்ளவும்.</p>
                     <div class="text-left space-y-4 font-medium bg-slate-50 dark:bg-slate-700/30 p-4 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <p class="flex items-center break-all"><i data-lucide="at-sign" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>sup.nenamaga@gmail.com</span></p>
                         <p class="flex items-center"><i data-lucide="message-circle" class="h-5 w-5 text-brand-500 mr-3 shrink-0"></i> <span>WhatsApp: +94 75 8574437</span></p>
                     </div>
-                    <a href="https://wa.me/94758574437" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition w-full justify-center">
-                        <i data-lucide="message-circle" class="h-5 w-5"></i> WhatsApp இல் அரட்டையடிக்கவும்
-                    </a>
-                    <p class="text-xs text-slate-400 pt-4 text-center">நாங்கள் 24 மணி நேரத்தில் பதிலளிப்போம்.</p>
+                    <p class="text-xs text-slate-400 pt-4 text-center">குறிப்பு: நாங்கள் தன்னார்வலர்கள், எனவே தயவுசெய்து பொறுமையாக இருக்கவும்.</p>
                 `,
                 privacy: `
                     <p class="mb-4 text-sm md:text-base">இந்த பயன்பாடு உங்கள் தனியுரிமையை மதிக்கிறது. சேவையை வழங்கவும் மேம்படுத்தவும் தேவையான குறைந்தபட்ச தரவை மட்டுமே நாங்கள் சேகரிக்கிறோம்.</p>
@@ -151,7 +145,7 @@
                             <li><strong class="text-slate-700 dark:text-slate-200">கண்காணிப்பு இல்லை:</strong> நாங்கள் உங்கள் இருப்பிடத்தைக் கண்காணிக்கவோ தனிப்பட்ட தரவை விற்கவோ மாட்டோம்.</li>
                         </ul>
                     </div>
-                    <p class="mt-4 text-xs text-slate-400 text-center">ICTLab LK ஐ பயன்படுத்துவதன் மூலம், இந்த விதிமுறைகளை ஏற்கிறீர்கள்.</p>
+                    <p class="mt-4 text-xs text-slate-400 text-center">நெனமகவைப் பயன்படுத்துவதன் மூலம், இந்த விதிமுறைகளை ஏற்கிறீர்கள்.</p>
                 `,
                 buttonUnderstood: "புரிந்து கொண்டேன்"
             }
@@ -1213,12 +1207,13 @@
 
                         <div class="glass p-3 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-white/50 dark:border-slate-700/50 mb-10 z-[30] transition-all">
                             <div class="flex flex-col gap-3">
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
                                     <div class="relative group">
                                         <i data-lucide="search" class="absolute left-5 top-4 h-5 w-5 text-slate-400 group-focus-within:text-brand-500 transition"></i>
                                         <input type="text" placeholder="${this.t('searchPlaceholder')}" value="${this.search}" id="search-input" class="w-full pl-14 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800/50 border border-transparent focus:border-brand-500/50 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-500/10 transition font-medium text-slate-700 dark:text-white placeholder-slate-400"/>
                                     </div>
                                     ${this.renderSelect('grade', GRADES, this.t('allGrades'))}
+                                    ${this.renderSelect('subject', SUBJECTS, this.t('allSubjects'))}
                                     ${this.renderSelect('medium', MEDIUMS, this.t('allMediums'))}
                                 </div>
                                 <div class="flex justify-end px-1">
@@ -1500,10 +1495,16 @@
                                                     <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none"></i>
                                                 </div>
                                             </div>
-                                            <div class="hidden">
-                                                <select id="subject-select" name="subject" required class="form-select-clean">
-                                                    <option value="ICT" selected>ICT</option>
-                                                </select>
+                                            <div class="space-y-1.5 w-full">
+                                                <label class="form-group-label" for="subject-select">${this.t('formSubject')}</label>
+                                                <div class="relative group">
+                                                    <i data-lucide="book" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
+                                                    <select id="subject-select" name="subject" required onchange="window.app.handleSubjectChange(this.value)" class="form-select-clean appearance-none cursor-pointer">
+                                                        ${SUBJECTS.map(s => `<option value="${s}">${s}</option>`).join('')}
+                                                        <option value="Other">--- Other ---</option>
+                                                    </select>
+                                                    <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none"></i>
+                                                </div>
                                             </div>
                                             <div class="space-y-1.5 w-full">
                                                 <label class="form-group-label" for="form-type">${this.t('formType')}</label>
@@ -1515,8 +1516,12 @@
                                             </div>
                                         </div>
 
-                                        <div class="hidden" id="subject-other-input">
-                                            <input name="subject_other" id="subject-other-name" type="text" value="">
+                                        <div class="space-y-1.5 w-full ${showOtherSubject ? '' : 'hidden'}" id="subject-other-input">
+                                            <label class="form-group-label">Other Subject Name</label>
+                                            <div class="relative group">
+                                                <i data-lucide="pencil" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
+                                                <input name="subject_other" id="subject-other-name" type="text" class="form-input-clean placeholder-slate-400" placeholder="Enter custom subject name" value="${customSubjectValue}" ${showOtherSubject ? 'required' : ''}>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -1829,13 +1834,24 @@
                                             </div>
                                         </div>
 
-                                        <div class="hidden">
-                                            <select required id="request-subject-select" name="requestSubject">
-                                                <option value="ICT" selected>ICT</option>
-                                            </select>
+                                        <div class="space-y-1.5">
+                                            <label class="form-group-label">${t('formSubject')}</label>
+                                            <div class="relative group">
+                                                <i data-lucide="book-open-text" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
+                                                <select required id="request-subject-select" name="requestSubject" onchange="window.app.handleRequestSubjectChange(this.value)" class="form-select-clean appearance-none">
+                                                    ${SUBJECTS.map(s => `<option value="${s}">${s}</option>`).join('')}
+                                                    <option value="Other">--- Other ---</option>
+                                                </select>
+                                                <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none"></i>
+                                            </div>
                                         </div>
-                                        <div class="hidden" id="request-subject-other-input">
-                                            <input name="requestSubjectOther" type="text" value="">
+                                        
+                                        <div class="space-y-1.5 hidden" id="request-subject-other-input">
+                                            <label class="form-group-label">Other Subject Name</label>
+                                            <div class="relative group">
+                                                <i data-lucide="pencil" class="h-5 w-5 group-focus-within:text-brand-500 transition-colors form-group-icon-wrapper"></i>
+                                                <input name="requestSubjectOther" type="text" class="form-input-clean" placeholder="Specify custom subject">
+                                            </div>
                                         </div>
 
                                         <div class="space-y-1.5">
